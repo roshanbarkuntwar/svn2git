@@ -48,7 +48,7 @@ public class TextFileDashboardAction extends ActionSupport implements SessionAwa
     @Override
     public String execute() throws UnsupportedEncodingException {
         String returnView = "success";
-
+            System.out.println("Svn Configuration......................");
         try {
             ViewClientMast viewClientMast = (ViewClientMast) session.get("WORKINGUSER");
             Assessment assesment = (Assessment) session.get("ASSESSMENT");
