@@ -28,6 +28,8 @@ public class SalarySevaarthProjectionBrowseAction extends ActionSupport implemen
         session.put("ACTIVE_TAB", "dashboard");
         String return_view = "success";
         StringBuilder sb = new StringBuilder();
+        
+        System.out.println("Svn Configuration......................");
         try {
             DAOFactory factory = DAOFactory.instance(DAOFactory.HIBERNATE);
             ViewClientMast client = (ViewClientMast) session.get("WORKINGUSER");
