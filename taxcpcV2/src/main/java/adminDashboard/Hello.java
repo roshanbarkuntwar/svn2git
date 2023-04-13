@@ -12,7 +12,7 @@ package adminDashboard;
 public class Hello {
     public static String world()
   {
-	  System.out.println("hello world Inside")
+	  System.out.println("hello world Inside");
     return "Hello world";
 	
 
