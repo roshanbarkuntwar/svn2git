@@ -18,7 +18,9 @@ public class DeductorInfoAction extends ActionSupport implements SessionAware {
     @Override
     public String execute() throws Exception {
         session.put("ACTIVE_TAB", "15GHDeductorInfo");
+         System.out.println("Svn Configuration......................");
         return "success";
+        
     }
 
     Map<String, Object> session;
