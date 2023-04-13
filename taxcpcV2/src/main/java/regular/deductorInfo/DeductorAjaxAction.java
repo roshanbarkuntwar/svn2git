@@ -74,6 +74,7 @@ public class DeductorAjaxAction extends ActionSupport implements SessionAware, S
         String l_return_result = "error";
         StringBuilder sb = new StringBuilder();
         DAOFactory factory = DAOFactory.instance(DAOFactory.HIBERNATE);
+         System.out.println("Svn Configuration......................");
         if (!utl.isnull(getAction())) {
             if (getAction().equalsIgnoreCase("selectCity")) {
                 CityMastDAO citydao = factory.getCityMastDAO();
