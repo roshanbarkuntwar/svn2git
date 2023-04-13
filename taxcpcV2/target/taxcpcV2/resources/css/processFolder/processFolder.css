@@ -1,0 +1,136 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 12, 2019, 5:49:31 PM
+    Author     : neha.bisen
+*/
+.selection-card:before, .error-list:before {
+  content: "";
+  position: absolute; }
+
+.list-sec {
+  color: #494c52;
+  background-position-y: 20px;
+  BACKGROUND: #e9ecef;
+  border: 1px solid #ddd9d9 !important; }
+  .list-sec .srNo {
+    width: 35px;
+    height: 35px;
+    background: #deeaff;
+    font-size: 1.2rem;
+    line-height: 30px;
+    border-radius: 50%;
+    color: #4E8DFF;
+    border: 1px solid #9bbfff; }
+  .list-sec h5 {
+    color: #86878b; }
+  .list-sec .recordNo {
+    color: #5a5a5a; }
+  .list-sec p {
+    font-size: 1.1rem;
+    margin-bottom: 0px !important; }
+    @media only screen and (min-width: 1000px) and (max-width: 1024px) {
+      .list-sec p {
+        font-size: 0.86rem; } }
+
+.selection-card {
+  box-shadow: 0 2px 12px 0 rgba(44, 61, 101, 0.09), 0px -1px 12px 0 rgba(44, 61, 101, 0.09);
+  border-radius: 10px; }
+  .selection-card:before {
+    width: 2px;
+    height: 25px;
+    background: #4E8DFF;
+    left: 0; }
+  .selection-card h4 {
+    color: #4E8DFF;
+    font-size: 1.06rem; }
+    @media only screen and (min-width: 1900px) and (max-width: 1920px) {
+      .selection-card h4 {
+        font-size: 1.5rem; } }
+    @media only screen and (min-width: 1200px) and (max-width: 1280px) {
+      .selection-card h4 {
+        font-size: 0.96rem; } }
+    @media only screen and (min-width: 1400px) and (max-width: 1600px) {
+      .selection-card h4 {
+        font-size: 1.1rem; } }
+  @media only screen and (min-width: 1200px) and (max-width: 1280px) {
+    .selection-card .custom-control-label {
+      font-size: 0.9rem; } }
+
+.error-list {
+  padding-right: 5px;
+  background-color: #fff;
+  border-bottom: 3px solid #2c5aad !important;
+  box-shadow: 1px 1px 20px 0px rgba(0, 0, 0, 0.05);
+  border-radius: 7px;
+  position: relative;
+  overflow: hidden; }
+  .error-list:before {
+    position: absolute;
+    content: '';
+    background: rgba(116, 166, 255, 0.3);
+    border-radius: 7px 7px;
+    transform: rotate(45deg);
+    width: 33px;
+    height: 31px;
+    top: -8px;
+    right: -5px; }
+  .error-list:after {
+    position: absolute;
+    content: '';
+    background: rgba(116, 166, 255, 0.37);
+    border-radius: 7px 7px;
+    transform: rotate(45deg);
+    width: 33px;
+    height: 31px;
+    top: 20px;
+    right: -9px; }
+  @media only screen and (min-width: 1200px) and (max-width: 1280px) {
+    .error-list {
+      /*        padding-right: 32px;*/ } }
+  @media only screen and (min-width: 1900px) and (max-width: 1920px) {
+    .error-list h4 {
+      font-size: 1.15rem; } }
+  .error-list .count, .error-list h4 {
+    color: #45474a;
+    font-size: 0.9rem; }
+  .error-list .count {
+    border-radius: 25px;
+    margin-right: 25px; }
+    @media only screen and (min-width: 1900px) and (max-width: 1920px) {
+      .error-list .count {
+        font-size: 1.15rem; } }
+  .error-list .icon-sec {
+    border: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 0px;
+    /*        border-top: 28px solid $blue;
+            border-left: 28px solid transparent;*/
+    background: transparent;
+    right: 6px;
+    cursor: pointer; }
+    @media only screen and (min-width: 1000px) and (max-width: 1024px) {
+      .error-list .icon-sec {
+        width: auto; } }
+    .error-list .icon-sec .fa {
+      position: absolute;
+      top: -26px;
+      left: -16px;
+      color: #ff4747;
+      font-size: 1.2rem; }
+
+.custom-control-label::before {
+  background-color: #bec2c6; }
+
+.error-list-wrap .col-md-4, .error-list-wrap .col-lg-4 {
+  padding-right: 0; }
+
+.taxcpc-process-indicator-outer {
+  background: rgba(0, 0, 0, 0.6); }
+
+/*# sourceMappingURL=processFolder.css.map */

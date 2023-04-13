@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+    
+    <definition name="baselayout" template="/WEB-INF/view/jsp/global/baseLayout.jsp">       
+        
+    </definition>
+        
+    <definition name="dashboard" extends="baselayout" >
+        <put-attribute name="body" value="/WEB-INF/view/jsp/dashboard/dashboard.jsp"/>
+    </definition>
+    <definition name="changeLogo" extends="baselayout" >
+        <put-attribute name="body" value="/WEB-INF/view/jsp/global/changeLogo.jsp"/>
+    </definition>
+    <definition name="branchHierarchy" extends="baselayout" >
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/dashboard/branchHierarchy/branchHierarchyBrowse.jsp"/>
+    </definition>
+    <definition name="deducteeBrowse" extends="baselayout" >
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/deductee/deducteeBrowse.jsp"/>
+    </definition>
+    
+    <definition name="transactionBrowse" extends="baselayout" >
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/transaction/transactionBrowse.jsp"/>
+    </definition>
+    <definition name="transactionEntry" extends="baselayout" >
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/transaction/transactionEntry.jsp"/>
+    </definition>
+  
+    <definition name="challanBrowse" extends="baselayout" >
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/challan/challanBrowse.jsp"/>
+    </definition>
+    
+    <definition name="challanEntry" extends="baselayout" >
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/challan/challanEntry.jsp"/>
+    </definition>
+    
+    <definition name="zipBulkTxt" extends="baselayout" >
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/dashboard/zipBulkTxtFile/zipBulkTxt.jsp"/>
+    </definition>
+    
+    <definition name="alert" extends="baselayout" >
+        <put-attribute name="body" value="/WEB-INF/view/jsp/alert/alert.jsp"/>
+    </definition>
+    
+    <definition name="userProfile" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/userProfile/userProfile.jsp"/>
+    </definition>
+    
+    <definition name="challanAllocation" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/challan/challanAllocation.jsp"/>
+    </definition>
+    
+    <definition name="customError" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/customError/customError.jsp"/>
+    </definition>
+    
+    <definition name="accessDenied" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/accessDenied/accessDenied.jsp"/>
+    </definition>
+    
+    <definition name="manageDeductor" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/deductorInfo/manageDeductor.jsp"/>
+    </definition>
+    
+    <definition name="manageChallan" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/manageChallan/manageChallan.jsp"/>
+    </definition>
+    
+    <definition name="PRNDetails" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/PNRDetails/PNRDetails.jsp"/>
+    </definition>
+    
+    <definition name="tdsGenerateFVU" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/generateFVU/generateFVU.jsp"/>
+    </definition>
+        
+    <definition name="excelImport" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/excelImport/excelImport.jsp"/>
+    </definition>
+    <definition name="excelImportStatus" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/excelImport/importStatus.jsp"/>
+    </definition>
+    <definition name="tokenStatus" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/excelImport/tokenStatus.jsp"/>
+    </definition>
+    <definition name="processFileResult" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/excelImport/processFileResult.jsp"/>
+    </definition>
+    
+    <definition name="panVerificationOffline" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/deductee/panVerification/offlinePanVerification.jsp"/>
+    </definition>
+    <definition name="deducteePanDetailsBrowse" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/deductee/deducteePanDetails/deducteePanDetailsBrowse.jsp"/>
+    </definition> 
+    <definition name="lowerDeductionCertificate" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/lowerDeductionCertificate/lowerDeductionCertificate.jsp"/>
+    </definition>
+    
+    <definition name="tdsLowerDeductionBrowse" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/lowerDeductionCertificate/lowerDeductionCertificateBrowse.jsp"/>
+    </definition>
+    
+    <definition name="salaryDetails" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/processErrors/salaryErrorSummaryDetails.jsp"/>
+    </definition>
+        
+    <definition name="tdsLowerDeductionEntry" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/lowerDeductionCertificate/lowerDeductionCertificateEntry.jsp"/>
+    </definition>
+    
+    
+    
+    <definition name="salaryEntryPage2" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/salaryNew/salaryEntryNew2.jsp"/>
+    </definition>
+    
+    <definition name="salaryBrowsePage" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/salaryNew/salaryBrowseNew.jsp"/>
+    </definition>
+    <definition name="salarySevaarthProj" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/salaryNew/salarySevaarthProjBrowse.jsp"/>
+    </definition>
+    <definition name="lowDeduCertifiAllocaBrowse" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/dashboard/ldcAllocation/lowDeduCertifiAllocation.jsp"/>
+    </definition>  
+    <definition name="addDeductee" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/addDeductee/addDeductee.jsp"/>
+    </definition>
+        
+    <definition name="updatePAN" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/deductee/updatePAN.jsp"/>
+    </definition>
+    
+    <definition name="branchGenerationBrowse" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/branchGeneration/branchGenerationBrowse.jsp"/>
+    </definition>
+    
+    <definition name="branchEntryPage" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/branchGeneration/branchGenerationEntry.jsp"/>
+    </definition>
+    
+    <definition name="processDetailsPage" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/processDetails/processDetailsBrowse.jsp"/>
+    </definition>
+       
+    <!-- Start Form 16 Config starts-->
+    <definition name="downloadTdsCertificate" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/TdsCertificate/downloadTdsCertificate.jsp"/>
+    </definition> 
+    <definition name="downloadStatus" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/downloadSection/downloadStatus.jsp"/>
+    </definition>
+
+    <!-- End Form 16 Config starts-->
+     
+    <!-- Challan Correction starts-->
+   
+    <definition name="miscellaneousCIN" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/CIN/CIN.jsp"/>
+    </definition>
+     
+    <definition name="miscellaneous" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/CIN/miscellaneousCinBrowse.jsp"/>
+    </definition>
+     
+    <definition name="checkerMaker" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/CIN/checkerMaker.jsp"/>
+    </definition>
+    
+    
+    
+    <!--- 15 GH configuration starts-->
+
+    
+    <definition name="15GHDeductorInfo" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/form15GH/deductorInfo/15GHDeductorInfo.jsp"/>
+    </definition>
+    <definition name="15GHTransaction" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/form15GH/transaction/15GHTransaction.jsp"/>
+    </definition>
+    <definition name="15GHValidate" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/form15GH/validation/15GHValidate.jsp"/>
+    </definition>
+    <definition name="15GHGenerateRefNo" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/form15GH/generateRefNo/15GHGenerateRefNo.jsp"/>
+    </definition>
+    <definition name="deductees_edit15gh" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/form15GH/transaction/deducteesEdit15Gh.jsp"/>
+    </definition>
+    <definition name="refranceNo15gh" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/form15GH/transaction/genRefranceNo.jsp"/>
+    </definition>
+    <definition name="ProcessErrorsResult15GH" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/form15GH/validation/ProcessErrorResult15GH.jsp"></put-attribute>
+    </definition> 
+    <definition name="15GHErrorDetails" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/form15GH/validation/DeducteeErrorDetails15GH.jsp"></put-attribute>
+    </definition> 
+    <definition name="errorStatus15GH" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/form15GH/validation/errorStatus15GH.jsp"></put-attribute>
+    </definition> 
+    <definition name="prnDetails15GH" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/form15GH/prnInformation/prnDetails.jsp"></put-attribute>
+    </definition> 
+    <!--- 15 GH configuration ends -->
+
+
+    <!--- Correction configuration starts -->
+    <definition name="corrImport" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/correction/importFile/corrImport.jsp"/>
+    </definition>
+    
+    
+    <definition name="corrImportDataGridAction" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/correction/importFile/uploadedFileDateGrid.jsp"></put-attribute>
+    </definition>
+    
+    
+    
+    <definition name="processUploadedFiles" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/correction/importFile/processUploadedFiles.jsp"></put-attribute>
+    </definition>
+   
+    <definition name="processUploadedFilesresult" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/correction/importFile/processUploadedFilesMsg.jsp"></put-attribute>
+    </definition>
+   
+   
+    <!--Deductor Info Configuration-->
+   
+  
+
+    <definition name="processError" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/processErrors/processErrors.jsp"></put-attribute> 
+    </definition>
+    <definition name="processErrorResult" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/processErrors/processErrorResult.jsp"></put-attribute> 
+    </definition>
+    
+    <definition name="errorDetails" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/processErrors/errorDetails.jsp"></put-attribute> 
+    </definition>
+    
+    <definition name="deducteeErrorDetails" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/processErrors/deducteeErrorDetails.jsp"></put-attribute> 
+    </definition>
+    
+    <definition name="errorDetailsSummary" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/processErrors/errorSummaryDetails.jsp"></put-attribute> 
+    </definition>
+    
+    <definition name="errorStatus" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/processErrors/errorStatus.jsp"></put-attribute> 
+    </definition>
+     <definition name="fvuDownloadSection" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/processErrors/fvuDownloadSection.jsp"></put-attribute> 
+    </definition>
+    
+    <definition name="generateFvu" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/processErrors/generateFvu.jsp"></put-attribute> 
+    </definition>
+    <definition name="generateFvuClob" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/processErrors/generateFvuClob.jsp"></put-attribute> 
+    </definition>
+    
+    <definition name="challanDetails" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/processErrors/challanErrorDetails.jsp"></put-attribute> 
+    </definition>    
+    
+    <!--============ new bulk 15G/15H xml for manage deductee 15gh=================================================-->   
+    <definition name="generateXml15gh" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/form15GH/DeducteeManage15ghDetail/GenerateXML15GH/GenerateXML15GH.jsp"></put-attribute>
+    </definition>
+    
+    <definition name="processwait" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/DynamicfileUploadErrors15GH/wait.jsp"></put-attribute>
+    </definition>
+    
+    <definition name="misReportBrowse" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/admin/misReport/misReportBrowsePage.jsp"></put-attribute>
+    </definition>
+    
+    <definition name="misReportContent" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/admin/misReport/misGroupReportContent.jsp"></put-attribute>
+    </definition>
+    <definition name="misUploadFile" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/admin/misReport/misUploadFilePage.jsp"></put-attribute>
+    </definition>
+    
+    <!-- Salary Sevaarth--> 
+    <definition name="salarySevaarthBrowse" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/salarySevaarth/salarySevaarthBrowse.jsp"></put-attribute>
+    </definition>
+     
+    <definition name="salarySevaarthProjectionBrowse" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/regular/salarySevaarthProjection/salarySevaarthProjectionBrowse.jsp"></put-attribute>
+    </definition>
+    <!-- End Salary Sevaarth-->
+    
+    <definition name="singleOperationPerform" extends="baselayout" >
+        <put-attribute name="body" value="/WEB-INF/view/jsp/global/formWithSingleButton.jsp"/>
+    </definition>
+      
+    <definition name="txtFileEntry" extends="baselayout" >
+         <put-attribute name="body" value="/WEB-INF/view/jsp\regular\dashboard\textFile\textFileView.jsp"/>
+    </definition>   
+    <definition name="txtFileDashboard" extends="baselayout" >
+         <put-attribute name="body" value="/WEB-INF/view/jsp\regular\dashboard\textFile\textfilesDashboard.jsp"/>
+    </definition> 
+    <definition name="adminuser" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/processErrors/challanErrorDetails.jsp"></put-attribute> 
+    </definition>  
+  
+
+    <definition name="adminDashboard" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/adminDashboard/adminDashboard.jsp"></put-attribute> 
+    </definition> 
+    <definition name="misReportSetting" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/adminDashboard/misReportSetting.jsp"></put-attribute> 
+    </definition> 
+    <definition name="parameterSetting" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/adminDashboard/applicationParameterSetting.jsp"></put-attribute> 
+    </definition> 
+    <definition name="dashboardSetting" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/adminDashboard/dashboardMenuSetting.jsp"></put-attribute> 
+    </definition> 
+    <definition name="userLoginDetails" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/adminDashboard/userLoginDetails.jsp"></put-attribute> 
+    </definition>  
+     <definition name="viewDashboard" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/adminDashboard/viewLoginDetailsDashboard.jsp"></put-attribute> 
+    </definition>
+     <definition name="loginDashboard" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/adminDashboard/loginDashboard.jsp"></put-attribute> 
+    </definition>
+    <definition name="downloadCustomError" extends="baselayout">
+        <put-attribute name="body" value="/WEB-INF/view/jsp/customError/downloadCustomError.jsp"/>
+    </definition>   
+</tiles-definitions>
+

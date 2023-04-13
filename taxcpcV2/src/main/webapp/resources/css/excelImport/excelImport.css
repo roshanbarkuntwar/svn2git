@@ -1,0 +1,155 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 16, 2019, 11:50:57 AM
+    Author     : sneha.parpelli
+*/
+.importStatus-container .card-header {
+  background: linear-gradient(60deg, #2358b7, #689eff);
+  position: relative;
+  font-size: 1.3rem;
+  padding: 0.4rem 1.25rem;
+  padding-left: 36px;
+  box-shadow: 0px 7px 30px 0px rgba(56, 107, 196, 0.37); }
+  .importStatus-container .card-header .card-header__icon {
+    background: linear-gradient(60deg, #2358b7, #689eff);
+    width: 38px;
+    height: 38px;
+    position: absolute;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 36px;
+    border: 3px solid #fff;
+    left: -17px;
+    top: -1px;
+    font-size: 1.2rem; }
+  .importStatus-container .card-header .card-header__btn-section {
+    top: 0px;
+    right: 5px; }
+    .importStatus-container .card-header .card-header__btn-section .btn {
+      font-size: 1.2rem;
+      padding: 0.1rem 0.5rem;
+      margin-top: 4px;
+      height: 26px; }
+.importStatus-container .card-body .btn-danger {
+  color: #fff;
+  background-color: #F44336;
+  border-color: #F44336; }
+.importStatus-container .refresh-btn {
+  background: #daeaff;
+  color: #0a55da;
+  border: 1px solid #0a55da; }
+.importStatus-container .kill-process {
+  background: #ffe0d5;
+  border: 1px solid #ef0b0b; }
+
+.log-file-container {
+  max-height: 350px;
+  overflow-y: auto; }
+
+@media only screen and (min-width: 1900px) and (max-width: 1920px) {
+  .log-file-container {
+    max-height: 600px; } }
+@media only screen and (min-width: 1400px) and (max-width: 1600px) {
+  .log-file-container {
+    max-height: 450px; } }
+.token-srno {
+  min-width: 50px;
+  max-width: 50px;
+  width: 50px; }
+
+.token-tokenNo {
+  min-width: 100px;
+  max-width: 100px;
+  width: 100px; }
+
+.token-templateName {
+  min-width: 156px;
+  max-width: 156px;
+  width: 156px; }
+
+.token-process {
+  min-width: 111px;
+  max-width: 125px;
+  width: 112px; }
+
+.token-processRemark {
+  min-width: 242px;
+  max-width: 242px;
+  width: 242px; }
+
+.token-time {
+  max-width: 156px;
+  min-width: 156px;
+  width: 156px; }
+
+.token-log {
+  min-width: 95px;
+  max-width: 95px;
+  width: 95px; }
+
+.log-file-btn, .kill-process-btn {
+  position: relative; }
+
+.log-file-btn i {
+  position: absolute;
+  background: #4E8DFF;
+  border-radius: 6px;
+  width: 20px;
+  height: 20px;
+  color: #fff;
+  line-height: 20px;
+  z-index: 2;
+  left: 0px;
+  top: -9px; }
+
+.kill-process-btn i {
+  position: absolute;
+  background: #ef0b0b;
+  border-radius: 6px;
+  width: 20px;
+  height: 20px;
+  color: #fff;
+  line-height: 20px;
+  z-index: 2;
+  left: 0px;
+  top: -9px; }
+
+.log-file-btn i:after {
+  position: absolute;
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: rgba(34, 138, 255, 0.44);
+  border-radius: 5px;
+  z-index: 0;
+  left: 6px;
+  z-index: -1; }
+
+.kill-process-btn i:after {
+  position: absolute;
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: rgba(239, 64, 9, 0.17) !important;
+  border-radius: 5px;
+  z-index: 0;
+  left: 6px;
+  z-index: -1; }
+
+.token-kill {
+  min-width: 112px;
+  max-width: 112px;
+  width: 112px; }
+
+.rotate-90 {
+  transform: rotate(90deg); }
+
+/*.refresh-icon {z-index: 26;opacity: 1;position: relative;cursor: pointer;padding: 7px 9px 7px 9px;transition:all ease-in .4s;}
+.refresh-icon:hover {background:#265bba;}
+.modal-log {max-width:73%}*/
+
+/*# sourceMappingURL=excelImport.css.map */

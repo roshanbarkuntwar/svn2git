@@ -1,0 +1,59 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 31, 2019, 11:34:30 AM
+    Author     : neha.bisen
+*/
+body .login-wrap:before, body .login-wrap:after {
+  content: "";
+  position: absolute; }
+
+body {
+  background: linear-gradient(45deg, #fc9088 50%, #ffffff 50%); }
+  @media only screen and (min-width: 240px) and (max-width: 737px) {
+    body {
+      background: linear-gradient(121deg, #fc9088 50%, #ffffff 50%) !important; } }
+  body .login-wrap {
+    height: 600px;
+    overflow: hidden; }
+    @media only screen and (min-width: 240px) and (max-width: 737px) {
+      body .login-wrap {
+        height: auto; } }
+    body .login-wrap:before {
+      width: 400px;
+      height: 400px;
+      background: rgba(252, 141, 136, 0.28);
+      right: -26%;
+      border-radius: 50%;
+      z-index: 0; }
+      @media only screen and (min-width: 240px) and (max-width: 737px) {
+        body .login-wrap:before {
+          background: transparent; } }
+    body .login-wrap:after {
+      width: 400px;
+      height: 400px;
+      background: rgba(252, 141, 136, 0.28);
+      right: -24%;
+      border-radius: 50%;
+      top: 61px;
+      z-index: 0; }
+      @media only screen and (min-width: 240px) and (max-width: 737px) {
+        body .login-wrap:after {
+          background: transparent; } }
+    body .login-wrap .login-vector {
+      background: #fef6f5; }
+    body .login-wrap .login-form form {
+      z-index: 5; }
+      body .login-wrap .login-form form h2 {
+        font-size: 2rem;
+        color: #fc8b89; }
+      body .login-wrap .login-form form .customError-title {
+        font-size: 2rem; }
+      body .login-wrap .login-form form .btn {
+        background: linear-gradient(60deg, #FF788F, #F8B77C);
+        box-shadow: 0px 7px 30px 0px #fc9088; }
+
+/*# sourceMappingURL=globalError.css.map */

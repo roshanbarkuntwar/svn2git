@@ -1,0 +1,23 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 19, 2019, 4:21:13 PM
+    Author     : sneha.parpelli
+*/
+.srno {
+  width: 50px;
+  min-width: 50px;
+  max-width: 50px; }
+
+.records {
+  width: 60px;
+  min-width: 60px;
+  max-width: 60px; }
+
+.taxcpc-process-indicator-outer {
+  background: rgba(0, 0, 0, 0.6); }
+
+/*# sourceMappingURL=generateFVU.css.map */

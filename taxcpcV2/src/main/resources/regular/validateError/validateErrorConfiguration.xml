@@ -1,0 +1,254 @@
+
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+
+<!-- Author: ayushi.jain -->
+
+<struts>
+    <!-- Add your configuration elements here -->
+    <package name="regular.validateError" extends="struts-default" namespace="/">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
+        
+        <interceptors>
+            <interceptor class="interceptors.LoginInterceptor" name="LoginInterceptor" ></interceptor>
+            
+            <interceptor-stack name="loginStack">
+                <interceptor-ref name="LoginInterceptor" />
+                <!--<interceptor-ref name="DeducteeIncomeDetailsInterceptor" />-->
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+            
+            <interceptor class="interceptors.ModuleAccessInterceptor" name="moduleAccessInterceptor"   ></interceptor>
+            <interceptor-stack name="moduleAccessStack">
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="moduleAccessInterceptor" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        
+        <default-interceptor-ref name="loginStack"/>
+        
+        <global-results>
+            <result name="loginFailed" type="redirect">login</result>
+            <result name="login">/login.jsp</result>
+            <result name="setassessment" type="redirect">setassessment</result>
+            <result name="globalError" type="redirect">globalError</result>
+            <result name="accessDenied" type="tiles">globalAccessDenied</result>
+        </global-results>
+        
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="globalError" />
+        </global-exception-mappings> 
+        
+        <action name="tdsProcessError" class="regular.validateError.ProcessErrorAction" method="execute">
+            <result name="input" type="tiles">processError</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">ProcessErrorResultAction</param> 
+                <param name="validate">${validate}</param>  
+                <param name="upload_purpose">${upload_purpose}</param>  
+                <param name="l_error_process_type">${l_error_process_type}</param>  
+                <param name="processCnfChkBx">${processCnfChkBx}</param>  
+                <param name="errorTypeProc">${errorTypeProc}</param>   
+                <param name="loginLevelFlag">${loginLevelFlag}</param>   
+                <param name="tokenNo">${tokenNo}</param>   
+                <param name="selectedUserLevel">${selectedUserLevel}</param> 
+                <param name="errorProcessReportCount">${errorProcessReportCount}</param>   
+            </result>              
+        </action>
+        
+        <action name="tdsProcessData" class="regular.validateError.ProcessDataAction" method="execute">
+            <result name="success">WEB-INF/view/jsp/processData/ProcessDataDashboard.jsp</result>
+        </action>
+        
+        <action name="ProcessErrorResultAction" class="regular.validateError.ProcessErrorResult" method="execute">
+            <result name="input" type="tiles">processError</result>
+            <result name="success" type="tiles">processErrorResult</result>  
+            <result name="ajax_result">WEB-INF/view/jsp/processErrors/processErrorSummaryRefresh.jsp</result>
+        </action>
+        
+        <action name="generateProcessErrorToken" class="regular.validateError.ProcessErrorResult" method="execute">
+            <result name="input" type="tiles">processError</result>
+            <result name="token_result" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>            
+        </action>
+                
+        <action name="getDynamicErrorDetails" class="regular.validateError.DynamicErrorDetailsAction" method="execute">          
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+                
+        <action name="deducteeErrorDetails" class="regular.validateError.ShowErrorDetailsAction" method="execute">
+            <result name="success" type="tiles">errorDetails</result>
+            <result name="input_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        
+        <action name="errorDetailsSummary" class="regular.validateError.ErrorDetailSummaryAction" method="execute">         
+            <result name="input" type="tiles">errorDetailsSummary</result>
+            <result name="success" type="tiles">errorDetailsSummary</result>
+        </action>
+        
+        <action name="getErrDetailSummaryDataAction" class="regular.validateError.ErrorDetailSummaryDataGridAction" method="execute">                 
+            <result name="input_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+        
+        <action name="showDeducteeValidationErrors" class="regular.validateError.ShowErrorDetailsAction" method="execute">         
+            <result name="success" type="tiles">deducteeErrorDetails</result>
+            <result name="input_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+        
+        <action name="showErrorDetailsDataGridAction" class="regular.validateError.ShowErrorDetailDataGridAction" method="execute">       
+            <result name="input" type="tiles">errorDetails</result> 
+            <result name="grid_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result> 
+            <result name="input_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+        
+        <action name="tdsProcessErrorResult" class="regular.validateError.ProcessErrorAction" method="execute">
+            <result name="success" type="tiles">processErrorResult</result>
+            <result name="input" type="tiles">processError</result>
+        </action>
+        
+        <action name="getPANDetailsAction" class="regular.validateError.PANDetailsAction" method="execute">         
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+        
+        <action name="dynamcContentDataListAction" class="regular.validateError.DynamicContentDataAsAJAX"  method="execute">
+            <result name="input" type="tiles">processError</result>
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+        
+        <action name="dynamicErrorDataManipulationAction" class="regular.validateError.ErrorDataManipulationAction" method="execute">         
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+        
+        <action name="errorManipulationAction" class="regular.validateError.DynamicErrorManipulationAction" method="execute">
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+        
+        <action name="getShowSalaryErrorAction" class="regular.validateError.SalaryErrorDetailAction" method="execute">    
+            <result name="input" type="tiles">salaryDetails</result>      
+            <result name="success" type="tiles">salaryDetails</result>            
+        </action>
+        <action name="getSalaryErrDetailSummaryAction" class="regular.validateError.ErrorSalaryDetailSummaryDataGridAction" method="execute">         
+            <result name="input" type="tiles">salaryDetails</result>
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+        
+        <action name="dropdownListDataAction" class="regular.validateError.UpdatePANDataAction" method="execute">
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        
+        <action name="errorStatus" class="regular.validateError.ErrorStatusAction" method="execute">
+            <result name="success" type="tiles">errorStatus</result>
+        </action>
+        <action name="fvuDownloadSection" class="regular.validateError.fvuDownloadAction" method="execute">
+            <result name="success" type="tiles">fvuDownloadSection</result>
+            <result name="download_FVU" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        
+        <action name="refreshErrorProcessTokenStatus" class="regular.validateError.ProcessErrorResult" method="execute">
+            <result name="input" type="tiles">errorStatus</result>
+            <result name="token_refreshed" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        
+        <action name="showChallanErrorDetailAction" class="regular.validateError.ChallanErrorDetailsAction" method="execute">
+            <result name="input" type="tiles">challanDetails</result>
+            <result name="success" type="tiles">challanDetails</result>            
+        </action>
+        
+        <action name="challanDetailsGrid" class="regular.validateError.ChallanErrorDetailsGridAction" method="execute">
+            <result name="input" type="tiles">challanDetails</result>            
+            <result name="challan_grid" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>            
+            <result name="ajax_result" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>            
+        </action>
+        
+        <action name="challanDataManipulationAction" class="regular.validateError.ChallanDataManipulationAction" method="execute">
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>     
+        </action>
+        
+        <action name="generateErrorProcessReport" class="regular.validateError.GenerateErrorProcessReport" method="execute">
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>     
+        </action>
+        
+        <!--        <action name="downloadErrorDetails" class="regular.validateError.DownloadErrorDetailsRegular" method="execute">
+            <result name="downloadsuccess" type="stream">
+                <param name="downlloadtype">${obj_exl_html.downloadType}</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+            </result>
+        </action>    -->
+        
+        <!--        <action name="dynamicDownloadFileErrorTemplate" class="regular.validateError.DynamicFileUploadDownloadErrorDetailsAction" method="execute">            
+            <result name="input" type="redirectAction">
+                <param name="actionName">tdsProcessError</param>
+            </result>            
+            <result name="dwltemplatesuccess" type="stream">
+                <param name="downlloadtype">${obj_exl_html.downloadType}</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+            </result>
+            <result name="dwltemplatefailed" type="redirectAction">
+                <param name="actionName">tdsProcessError</param>
+            </result>
+        </action>    -->
+    </package>
+</struts>
+

@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA;;;;EAIE;AACF;;;EAGE;AAGF,gCAAiC;EAE7B,SAAS,EAAE,IAAI;ECqCX,kEACA;IDxCR,gCAAiC;MAOzB,SAAS,EAAE,IAAI;MACf,OAAO,EAAE,WAAW;;AAG5B,6CAA8C;EAC1C,aAAa,EAAE,kBAAgB;EC2B3B,kEACA;ID7BR,6CAA8C;MAItC,aAAa,EAAE,kBAAgB;;AAGvC,sCAAuC;EACnC,aAAa,EAAE,eAAe;ECoB1B,kEACA;IDtBR,sCAAuC;MAI/B,aAAa,EAAE,eAAe;;AAGtC,QAAQ;EAAC,OAAO,EAAC,KAAK;;AACtB,uDAAwD;EACpD,gBAAgB,EAAE,OAAO;EACzB,KAAK,EAAC,IAAI",
+"sources": ["../../scss/manageDeductor/manageDeductor.scss","../../scss/main/_mixins.scss"],
+"names": [],
+"file": "manageDeductor.css"
+}

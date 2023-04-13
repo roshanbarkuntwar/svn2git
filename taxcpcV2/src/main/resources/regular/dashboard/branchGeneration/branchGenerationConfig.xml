@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<!-- Author: gaurav.khanzode -->
+
+<struts>
+    <package name="regular.dashboard.branchGeneration" extends="struts-default" namespace="/">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
+        
+        <interceptors>
+            <interceptor class="interceptors.LoginInterceptor" name="LoginInterceptor" ></interceptor>
+            
+            <interceptor-stack name="loginStack">
+                <interceptor-ref name="LoginInterceptor" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+            
+            <interceptor class="interceptors.ModuleAccessInterceptor" name="moduleAccessInterceptor"></interceptor>
+            <interceptor-stack name="moduleAccessStack">
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="moduleAccessInterceptor" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        
+        <default-interceptor-ref name="loginStack"/>
+        
+        <global-results>
+            <result name="login">/login.jsp</result>
+            <result name="setassessment" type="redirect">setassessment</result>
+            <result name="loginFailed" type="redirect">login</result>
+            <result name="globalError" type="redirect">globalError</result>
+            <result name="accessDenied" type="redirect">globalAccessDenied</result>
+        </global-results>
+        
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="globalError" />
+        </global-exception-mappings>
+        
+        <action name="branchGenerationBrowse" class="regular.dashboard.branchGeneration.BranchGenerationBrowse" method="execute">
+            <result name="success" type="tiles">branchGenerationBrowse</result>
+            <result name="ajax_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        
+        <action name="branchDetailsGrid" class="regular.dashboard.branchGeneration.BranchDetailsGridAction" method="execute">            
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        
+        <action name="branchGeneration" class="regular.dashboard.branchGeneration.BranchGenerationAction" method="execute">
+            <result name="input" type="tiles">branchEntryPage</result>
+            <result name="inputBrowse" type="redirect">branchGenerationBrowse</result>
+            <result name="success" type="redirect">branchGenerationBrowse</result>
+            
+            <result name="save_ajax" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+            
+            <result name="ajax_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+    </package>
+</struts>

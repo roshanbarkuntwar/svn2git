@@ -1,0 +1,93 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 15, 2019, 2:46:38 PM
+    Author     : neha.bisen
+*/
+.tab-section .nav-pills > li > a {
+  font-size: 14px;
+  padding: 3px 20px 3px; }
+  @media only screen and (min-width: 1000px) and (max-width: 1024px) {
+    .tab-section .nav-pills > li > a {
+      font-size: 11px;
+      padding: 3px 5px 3px; } }
+
+.tab-section .nav-pills > li > a.active:after {
+  border-bottom: 27px solid #4E8DFF; }
+  @media only screen and (min-width: 1000px) and (max-width: 1024px) {
+    .tab-section .nav-pills > li > a.active:after {
+      border-bottom: 22px solid #4E8DFF; } }
+
+.tab-section .nav-pills > li > a:after {
+  border-bottom: 27px solid #fff; }
+  @media only screen and (min-width: 1000px) and (max-width: 1024px) {
+    .tab-section .nav-pills > li > a:after {
+      border-bottom: 22px solid #fff; } }
+
+.log-file-container {
+  max-height: 350px;
+  overflow-y: auto; }
+
+@media only screen and (min-width: 1900px) and (max-width: 1920px) {
+  .log-file-container {
+    max-height: 600px; } }
+@media only screen and (min-width: 1400px) and (max-width: 1600px) {
+  .log-file-container {
+    max-height: 450px; } }
+.download-btn {
+  position: relative;
+  padding: 0;
+  border: 0;
+  margin-left: -8px; }
+
+.download-btn i {
+  position: absolute;
+  background: #4E8DFF;
+  border-radius: 6px;
+  width: 22px;
+  height: 22px;
+  color: #fff;
+  line-height: 22px;
+  z-index: 2;
+  left: 0px;
+  top: -13px; }
+
+.download-btn i:after {
+  position: absolute;
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: rgba(34, 138, 255, 0.44);
+  border-radius: 5px;
+  z-index: 0;
+  left: 6px;
+  z-index: -1; }
+
+.td-fvu-sr-no {
+  min-width: 60px;
+  max-width: 60px;
+  width: 60px; }
+
+.td-fvu-file-type {
+  min-width: 400px;
+  max-width: 400px;
+  width: 400px; }
+
+.td-fvu-action {
+  min-width: 80px;
+  max-width: 80px;
+  width: 80px; }
+
+.login-section {
+  background: #e2ecff;
+  border-radius: 10PX;
+  padding: 10PX 0;
+  margin-bottom: 10PX; }
+
+.login-section .form-check-inline .form-check-input {
+  margin-top: 5px; }
+
+/*# sourceMappingURL=Errorcommon.css.map */

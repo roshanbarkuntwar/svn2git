@@ -1,0 +1,109 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+
+<!-- Author: ayushi.jain -->
+
+<struts>
+
+    <package name="regular.challan" extends="struts-default" namespace="/">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
+        
+        <interceptors>
+            <interceptor class="interceptors.LoginInterceptor" name="LoginInterceptor" ></interceptor>
+            
+            <interceptor-stack name="loginStack">
+                <interceptor-ref name="LoginInterceptor" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+            
+            <interceptor class="interceptors.ModuleAccessInterceptor" name="moduleAccessInterceptor"></interceptor>
+            <interceptor-stack name="moduleAccessStack">
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="moduleAccessInterceptor" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        
+        <default-interceptor-ref name="loginStack"/>
+        
+        <global-results>
+            <result name="loginFailed" type="redirect">login</result>
+            <result name="login">/login.jsp</result>
+            <result name="setassessment" type="redirect">setassessment</result>
+            <result name="globalError" type="redirect">globalError</result>
+            <result name="accessDenied" type="tiles">globalAccessDenied</result>
+        </global-results>
+        
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="globalError" />
+        </global-exception-mappings> 
+        
+        
+        
+        <action name="tdsChallan" class="regular.challan.ChallanBrowseAction" method="execute">
+            <result name="success" type="tiles">challanBrowse</result> 
+            <result name="grid_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+            <result name="filter_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>   
+        </action>
+        <action name="tdsChallanEntry" class="regular.challan.ChallanBrowseAction" method="execute">
+            <result name="challanentry" type="tiles">challanEntry</result>
+        </action>          
+        <action name="challanDataGridAction" class="regular.challan.ChallanDataGridAction" method="execute">
+            <result name="grid_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+            <result name="input">challanBrowse</result>
+            <result name="input_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>      
+        </action>  
+        <!--        <action name="getAutocompleteAction" class="regular.challan.AutoCompleteAction" method="execute">
+            <result name="success" type="stream">
+                <param name="contentType">application/json</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>         -->
+        <action name="fetch_details" class="regular.challan.FetchDetailsAction" method="execute" >
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="getChallanCRUDAction" class="regular.challan.ChallanCRUDAction" method="execute">
+            <result name="deleteSuccess" type="redirect">tdsChallan</result>
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="getChallanEditPage" class="regular.challan.ChallanCRUDAction" method="execute">
+            <result name="edit" type="tiles">challanEntry</result>
+            <result name="view" type="tiles">challanEntry</result>
+        </action>  
+        <action name="challanAjax" class="regular.challan.ChallanAjaxAction" method="execute">
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action> 
+        <action name="challanDownloadFile" class="regular.challan.ChallanDownloadFileAction" method="downloadChallanFileData">
+            <result name="downloadSuccess" type="stream">
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+            </result>
+        </action>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+    </package>     
+</struts>
+

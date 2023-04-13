@@ -1,0 +1,86 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+
+<!-- Author: ayushi.jain -->
+
+<struts>
+    <!-- Add your configuration elements here -->
+    <package name="regular.deductorInfo" extends="struts-default" namespace="/">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
+        
+        <interceptors>
+            <interceptor class="interceptors.LoginInterceptor" name="LoginInterceptor" ></interceptor>
+            
+            <interceptor-stack name="loginStack">
+                <interceptor-ref name="LoginInterceptor" />
+                <!--<interceptor-ref name="DeducteeIncomeDetailsInterceptor" />-->
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+            
+            <interceptor class="interceptors.ModuleAccessInterceptor" name="moduleAccessInterceptor"   ></interceptor>
+            <interceptor-stack name="moduleAccessStack">
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="moduleAccessInterceptor" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        
+        <default-interceptor-ref name="loginStack"/>
+        
+        <global-results>
+            <result name="loginFailed" type="redirect">login</result>
+            <result name="login">/login.jsp</result>
+            <result name="setassessment" type="redirect">setassessment</result>
+            <result name="globalError" type="redirect">globalError</result>
+            <result name="accessDenied" type="tiles">globalAccessDenied</result>
+        </global-results>
+        
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="globalError" />
+        </global-exception-mappings> 
+                
+        <action name="deductors" class="regular.deductorInfo.DeductorInfoAction" method="execute">
+             <result name="edit" type="tiles">manageDeductor</result>                    
+             <result name="success" type="tiles">dashboard</result>                    
+        </action>
+        
+        <action name="DeductorManipulationAction" class="regular.deductorInfo.DeductorManipulationAction" method="execute">    
+             <result name="loadEditDeductor" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param> 
+            </result>
+             <result name="deleteSuccess" type="redirectAction">
+                <param name="actionName">deductors</param>
+                <param name="redirectToDetails">true</param> 
+            </result>
+             <result name="deductorError" type="redirectAction">
+                <param name="actionName">deductors</param>
+                <param name="redirectToDetails">true</param> 
+            </result>
+             <result name="deductorSuccess" type="redirectAction">
+                <param name="actionName">dynamicMenu</param>
+                <param name="parentFlag">${parentFlag}</param>             
+                <param name="childFlag">${childFlag}</param>
+            </result>
+            <result name="input" type="tiles" >manageDeductor</result>
+        </action>
+        
+        <action name="getClientCategoryList" class="regular.deductorInfo.DeductorAjaxAction" method="execute">      
+            <result name="success" type="stream">
+                <param name="contentType">text/plain</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="getCsiFileDeductorName" class="regular.deductorInfo.CsiFileDeductorName" method="execute" >
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+    </package>
+</struts>
+

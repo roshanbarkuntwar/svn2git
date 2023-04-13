@@ -1,0 +1,61 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+
+<!-- Author: ayushi.jain -->
+
+<struts>
+    <!-- Add your configuration elements here -->
+    <package name="regular.uploadCSI" extends="struts-default" namespace="/">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
+        
+        <interceptors>
+            <interceptor class="interceptors.LoginInterceptor" name="LoginInterceptor" ></interceptor>
+            
+            <interceptor-stack name="loginStack">
+                <interceptor-ref name="LoginInterceptor" />
+                <!--<interceptor-ref name="DeducteeIncomeDetailsInterceptor" />-->
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+            
+            <interceptor class="interceptors.ModuleAccessInterceptor" name="moduleAccessInterceptor"   ></interceptor>
+            <interceptor-stack name="moduleAccessStack">
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="moduleAccessInterceptor" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        
+        <default-interceptor-ref name="loginStack"/>
+        
+        <global-results>
+            <result name="loginFailed" type="redirect">login</result>
+            <result name="login">/login.jsp</result>
+            <result name="setassessment" type="redirect">setassessment</result>
+            <result name="globalError" type="redirect">globalError</result>
+            <result name="accessDenied" type="tiles">globalAccessDenied</result>
+        </global-results>
+        
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="globalError" />
+        </global-exception-mappings> 
+        
+        <action name="uploadCSI" class="regular.uploadCSI.UploadCSIAction" method="execute">
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        
+        <action name="getCSISftp" class="regular.uploadCSI.GetCSIAction" method="execute">            
+            <result name="success" type="redirectAction">
+                <param name="actionName">generateFvuBtnAction</param>
+                <param name="tokenNo">${tokenNo}</param>
+            </result>
+        </action>        
+    </package>
+</struts>
+

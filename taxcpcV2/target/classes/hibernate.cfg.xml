@@ -1,0 +1,121 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory> 
+        <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@192.168.100.14:1521:orcl</property>   
+        <!--FIGMENT Servers-->
+        <!--PNB_2122A-PNB_2223 / PSB_2122-PSB_2223 / INB_2122-INB_2223--> 
+        <!--<property name="hibernate.connection.url">jdbc:oracle:thin:@192.168.2.10:1943:orcl</property>-->
+        <!-- IOB_2122-IOB_2223 / LIVE_2122-LIVE_2223 / BOI_2122-BOI_2223/UIIC_2223 -->
+        <!--<property name="hibernate.connection.url">jdbc:oracle:thin:@192.168.2.10:1944:Taxcpc</property>-->
+        <!--PSB_TEST_2122-FGS-TaxCPC UAT DB- -->
+        <!--<property name="hibernate.connection.url">jdbc:oracle:thin:@192.168.2.220:1521:orcl220</property>-->
+        <!--ora cloud fgs--> 
+        <!--<property name="hibernate.connection.url">jdbc:oracle:thin:@dbtaxcpcv2_high?TNS_ADMIN=C:\\ora-cloud</property>-->
+        <!--FIGMENT Servers-->
+        <!--PNB Delhi-->
+        <!--<property name="hibernate.connection.url">jdbc:oracle:thin:@10.192.15.125:1595:TAXCPC</property>-->      
+        <!--INB Chennai-LHS_TDS_INB-->
+        <!--<property name="hibernate.connection.url">jdbc:oracle:thin:@10.100.13.9:1583:taxcpc</property>--> 
+        <!--BOI MUMBAI-->
+        <!--<property name="hibernate.connection.url">jdbc:oracle:thin:@172.2.46.141:1521:taxcpc</property> -->
+        <!--CSB NAGPUR_TAXCPCUAT-->
+        <!--<property name="hibernate.connection.url">jdbc:oracle:thin:@10.51.4.31:1524:TAXCPCUAT</property> -->
+        <!--CSB_2122__taxcpc-->
+        <!--<property name="hibernate.connection.url">jdbc:oracle:thin:@10.51.7.50:1521:TAXCPC</property>--> 
+        <!--CSB_2122__taxcpc-->
+        <!--IDBI pass=CTDSDB-->
+        <!--<property name="hibernate.connection.url">jdbc:oracle:thin:@10.142.16.191:1621:ctdsdb</property>-->  
+        <!--PSB DELHI-LHS_TDS_PSB-->
+        <!--<property name="hibernate.connection.url">jdbc:oracle:thin:@172.22.5.207:1521:ORCL</property>-->                  
+        <property name="hibernate.connection.username">LHS_TDS_INB</property>
+        <property name="hibernate.connection.password">LHS_TDS_INB</property>
+        <property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+        <property name="hibernate.show_sql">false</property>
+        <property name="format_sql">false</property>
+        <property name="hibernate.enable_lazy_load_no_trans">true</property>
+        <property name="hibernate.cache.use_second_level_cache">false</property>
+        <property name="hibernate.cache.use_query_cache">false</property>
+        <property name="hibernate.jdbc.batch_size">25</property><!--flush data after 25 records for better session performance-->
+        <property name="hibernate.c3p0.acquire_increment">1</property>
+        <property name="hibernate.c3p0.idle_test_period">3000</property>
+        <property name="hibernate.c3p0.min_size">0</property><!--add property for multiple session-->
+        <property name="hibernate.c3p0.max_size">48</property><!--add property for multiple session,enhancement required-->
+        <property name="hibernate.c3p0.max_statements">0</property><!--add property for multiple session-->
+        <property name="hibernate.c3p0.timeout">0</property><!--add property for multiple session-->
+        <property name="hibernate.c3p0.maxStatementsPerConnection">100</property><!--add property for multiple session-->  
+        <!--<property name="hibernate.c3p0.unreturnedConnectionTimeout">600</property>add property for alive connection due to long process,NEW--> 
+        <!--<property name="hibernate.c3p0.debugUnreturnedConnectionStackTraces">true</property>add property for alive connection due to long process,NEW-->
+        <property name="hibernate.current_session_context_class">thread</property>
+        <property name="hibernate.query.factory_class">org.hibernate.hql.ast.ASTQueryTranslatorFactory</property>
+        
+        <mapping class="hibernateObjects.LhssysParameters"/>
+        <mapping class="hibernateObjects.UserMast"/>
+        <mapping class="hibernateObjects.ViewClientMast"/>
+        <mapping class="hibernateObjects.ClientMast"/>
+        <mapping class="hibernateObjects.QuickNavigationMast"/>
+        <mapping class="hibernateObjects.TdsMast"/>
+        <mapping class="hibernateObjects.ViewTdsDeductReason"/>
+        <mapping class="hibernateObjects.TdsTranLoad"/>
+        <mapping class="hibernateObjects.TdsMiscTranLoad"/>
+        <mapping class="hibernateObjects.CityMast"/>
+        <mapping class="hibernateObjects.CountryMast"/>
+        <mapping class="hibernateObjects.PanMast"/>
+        <mapping class="hibernateObjects.StateMast"/>
+        <mapping class="hibernateObjects.ViewClientCatg"/>
+        <mapping class="hibernateObjects.ViewDeducteeType"/>
+        <mapping class="hibernateObjects.ViewClientType"/>
+        <mapping class="hibernateObjects.DeducteeBflagRefinfoTran"/>
+        <mapping class="hibernateObjects.LhssysFileTran"/>
+        <mapping class="hibernateObjects.ViewTdsDeductReason"/>
+        <mapping class="hibernateObjects.ViewTdsChallanTranLoad"/>
+        <mapping class="hibernateObjects.TdsSplRateMast"/>
+        <mapping class="hibernateObjects.LhssysTdsReturnTran"/>
+        <mapping class="hibernateObjects.LhssysPortalNews"/>
+        <mapping class="hibernateObjects.BankMast"/>
+        <mapping class="hibernateObjects.TdsChallanTranLoad"/>
+        <mapping class="hibernateObjects.ViewMinistryMast"/>
+        <mapping class="hibernateObjects.ViewSubMinistryMast"/>
+        <mapping class="hibernateObjects.DeducteeBflagRefinfoSeqNo"/>
+        <mapping class="hibernateObjects.ViewTdsTranLoad"/>
+        <mapping class="hibernateObjects.ViewClientTemplate"/>
+        <mapping class="hibernateObjects.TdsChallanTranCorrection"/>
+        <mapping class="hibernateObjects.ViewCorrType"/>
+        <mapping class="hibernateObjects.LhssysCorrFileUploadTran"/>
+        <mapping class="hibernateObjects.LhssysClientLoginTran"/>
+        <mapping class="hibernateObjects.TdsTranCorr"/>
+        <mapping class="hibernateObjects.ViewRemittanceNature"/>
+        <mapping class="hibernateObjects.ViewDeducteeCatg"/>
+        <mapping class="hibernateObjects.ClientMastCorrection"/>
+        <mapping class="hibernateObjects.LhssysProcessLog"/>
+        <mapping class="hibernateObjects.DeducteeMast15gh"/>
+        <mapping class="hibernateObjects.ViewEmpCatg"/>
+        <mapping class="hibernateObjects.ViewPanStatus"/>
+        <mapping class="hibernateObjects.ViewResidentType"/>
+        <mapping class="hibernateObjects.DeducteeBflagAmtTran"/>
+        <mapping class="hibernateObjects.TempData"/>
+        <mapping class="hibernateObjects.LhssysEngineCols"/>
+        <mapping class="hibernateObjects.LhssysTemplate"/>
+        <mapping class="hibernateObjects.ViewLhssysTemplateError"/>
+        <mapping class="hibernateObjects.ViewSalaryDataValidation"/>
+        <mapping class="hibernateObjects.SalaryAmtTran"/>
+        <mapping class="hibernateObjects.SalaryTran"/>
+        <mapping class="hibernateObjects.ViewSalaryEmployee"/>
+        <mapping class="hibernateObjects.SalaryConfigMast"/>
+        <mapping class="hibernateObjects.ViewEmpCatg"/>
+        <mapping class="hibernateObjects.PinCodeMast"/>
+        <mapping class="hibernateObjects.EntityMast"/>
+        <mapping class="hibernateObjects.AccYearMast"/>
+        <mapping class="hibernateObjects.EntityLogoMast"/>
+        <mapping class="hibernateObjects.LhssysAlertDirectEmail"/>
+        <mapping class="hibernateObjects.LhssysAlertDirectEmailPara"/>
+        <mapping class="hibernateObjects.MisReportConfigMast"/>
+        <mapping class="hibernateObjects.MisReportConfigMastFilter"/>
+        <mapping class="hibernateObjects.ViewLhssysLatestAssYear"/>
+        <mapping class="hibernateObjects.SalaryTranLoad"/>
+        <mapping class="hibernateObjects.PanMastFileUploadTran"/>
+        <mapping class="hibernateObjects.ViewErrorProcessReports"/>
+    </session-factory>
+</hibernate-configuration>

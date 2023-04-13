@@ -1,0 +1,110 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 13, 2019, 12:40:48 PM
+    Author     : sneha.parpelli
+*/
+.error-details-section .error-srno:before, .error-details-section .error-srno:after {
+  content: "";
+  position: absolute; }
+
+.error-list-wrap {
+  background: #f7f7f7; }
+  .error-list-wrap .error-list {
+    margin: 9px 10px;
+    box-shadow: 0px 0px 10px rgba(193, 198, 206, 0.72);
+    background: #fff; }
+    .error-list-wrap .error-list i {
+      background: linear-gradient(60deg, #2358b7, #689eff);
+      padding: 4px;
+      font-size: 1.3rem;
+      color: #fff;
+      border-radius: 5px;
+      box-shadow: 4px 5px 30px 0px rgba(56, 107, 196, 0.32);
+      left: -19px;
+      top: 3px;
+      border: 1px solid #5288e8; }
+    .error-list-wrap .error-list .media-body {
+      padding: 5px;
+      padding-left: 12px; }
+    .error-list-wrap .error-list h5 {
+      font-size: 1rem; }
+    .error-list-wrap .error-list .badge-pill {
+      right: 20px;
+      top: 5px; }
+    .error-list-wrap .error-list .badge-primary {
+      color: #4e8dff;
+      background-color: rgba(154, 187, 247, 0.41);
+      border: 1px solid #afcbff;
+      font-weight: bold;
+      padding: 0.1rem 1rem; }
+
+.error-details-section {
+  border-color: rgba(0, 0, 0, 0.125) !important; }
+  .error-details-section h5 {
+    color: #273f69;
+    font-size: 1.3rem; }
+  .error-details-section .error-srno {
+    width: 25px;
+    height: 25px;
+    background: #2b60bf;
+    border-radius: 7px;
+    transform: rotate(73deg);
+    line-height: 40px;
+    margin-left: 5px; }
+    .error-details-section .error-srno:before {
+      width: 25px;
+      height: 25px;
+      background: rgba(46, 101, 199, 0.34);
+      border-radius: 7px;
+      top: -6px;
+      transform: rotate(73deg);
+      line-height: 48px;
+      right: -5px; }
+    .error-details-section .error-srno:after {
+      width: 25px;
+      height: 25px;
+      background: rgba(46, 101, 199, 0.34);
+      border-radius: 7px;
+      top: 5px;
+      transform: rotate(252deg);
+      line-height: 48px;
+      right: 4px; }
+    .error-details-section .error-srno .error-srno-inner {
+      transform: rotate(-73deg);
+      line-height: 32px;
+      padding-left: 14px; }
+  .error-details-section .card-header {
+    padding: 0.4rem 1.25rem; }
+    .error-details-section .card-header .bulk-review {
+      right: 0;
+      top: 0px;
+      position: absolute;
+      background: linear-gradient(to bottom, #0e4dbd, #293e63);
+      font-weight: 500;
+      color: #fff; }
+
+.btn-action-section {
+  left: 250px;
+  box-shadow: 1px -3px 6px rgba(199, 204, 212, 0.43922);
+  padding: 5px;
+  cursor: pointer;
+  z-index: 1; }
+
+.height-gap {
+  height: 50px; }
+
+@media only screen and (min-width: 1000px) and (max-width: 1024px) {
+  .error-list-wrap .error-list h5 {
+    font-size: 12px; } }
+@media only screen and (min-width: 1200px) and (max-width: 1280px) {
+  .error-list-wrap .error-list h5 {
+    font-size: 12px; } }
+@media only screen and (min-width: 1300px) and (max-width: 1366px) {
+  .error-list-wrap .error-list h5 {
+    font-size: 12px; } }
+
+/*# sourceMappingURL=processErrorResult.css.map */

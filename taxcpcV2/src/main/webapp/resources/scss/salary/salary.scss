@@ -1,0 +1,127 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 22, 2019, 6:48:56 PM
+    Author     : ayushi.jain
+*/
+
+.line-height-2 {
+    line-height: 0.5;
+}
+.more-details-btn
+{
+    background-color: #cbd2da;
+    border-color: #a0a5ab;
+    color: #010919;
+    padding: 1px 6PX !important;
+    height: 25px !important;
+    line-height: 24px;
+    border-radius: 0px 0.3rem 0.3rem 0px;
+}
+.collapse {
+    display: none;
+    background-color: rgb(247, 250, 255) !important;
+    
+    padding: 5px;
+    margin: 5px 0px;
+    border: 1px solid #dfeaff !important;
+}
+.panel
+{
+    border: 1px solid #e9ecef;
+    
+}
+.panel-heading
+{
+    background: #e9eef7;
+    padding: 3px 10px;
+    color: #343942;
+}
+.panel-body
+{
+    padding:10px 0px;
+}
+
+
+.check-action
+{
+    width: 30px;
+    min-width: 30px;
+    max-width: 30px;
+}
+
+.branch, .section 
+{
+  width: 80px;
+  min-width: 80px;
+  max-width: 80px; 
+}
+
+.panno
+{
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+}
+
+ .grossIncome, .profTax
+{
+  width: 120px;
+  min-width: 120px;
+  max-width: 120px;
+}
+
+.empSalary
+{
+  width: 160px;
+  min-width: 160px;
+  max-width: 160px;
+}
+.taxableIncome
+{
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+}
+
+
+ .tdsCurrentEmployer
+{
+  width: 200px;
+  min-width: 200px;
+  max-width: 200px;
+}
+
+.surCharge {
+  width: 120px;
+  min-width: 120px;
+  max-width: 120px; }
+
+.transactionDate {
+  width: 137px;
+  min-width: 137px;
+  max-width: 137px; }
+
+.dedUS80CCG {
+  width: 137px;
+  min-width: 137px;
+  max-width: 137px; }
+
+.green-color-placeholder::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: #079c0d; }
+
+.green-color-placeholder::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #079c0d; }
+
+.green-color-placeholder:-ms-input-placeholder {
+  /* IE 10+ */
+  color: #079c0d; }
+
+.green-color-placeholder:-moz-placeholder {
+  /* Firefox 18- */
+  color: #079c0d; }

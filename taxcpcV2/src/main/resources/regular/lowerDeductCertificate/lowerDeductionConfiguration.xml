@@ -1,0 +1,87 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+
+<!-- Author: ayushi.jain -->
+
+<struts>
+    <!-- Add your configuration elements here -->
+    <package name="regular.lowerDeductCertificate" extends="struts-default" namespace="/">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
+        
+        <interceptors>
+            <interceptor class="interceptors.LoginInterceptor" name="LoginInterceptor" ></interceptor>
+            
+            <interceptor-stack name="loginStack">
+                <interceptor-ref name="LoginInterceptor" />
+                <!--<interceptor-ref name="DeducteeIncomeDetailsInterceptor" />-->
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+            
+            <interceptor class="interceptors.ModuleAccessInterceptor" name="moduleAccessInterceptor"   ></interceptor>
+            <interceptor-stack name="moduleAccessStack">
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="moduleAccessInterceptor" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        
+        <default-interceptor-ref name="loginStack"/>
+        
+        <global-results>
+            <result name="loginFailed" type="redirect">login</result>
+            <result name="login">/login.jsp</result>
+            <result name="setassessment" type="redirect">setassessment</result>
+            <result name="globalError" type="redirect">globalError</result>
+            <result name="accessDenied" type="tiles">globalAccessDenied</result>
+        </global-results>
+        
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="globalError" />
+        </global-exception-mappings> 
+        
+        
+        <action name="lowerDeductDataGridAction" class="regular.lowerDeductCertificate.LowerDeductionCertificateDataGrid" method="execute">
+            <result name="grid_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+            <result name="input" type="tiles">tdsLowerDeductionBrowse</result>
+            <result name="input_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>      
+        </action>
+        <action name="tdsLowerDeductionBrowse" class="regular.lowerDeductCertificate.LowerDeductCertificateBrowse" method="execute">
+            <result name="success" type="tiles">tdsLowerDeductionBrowse</result>
+            <result name="filter_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+        <action name="tdsLowerDeductionEntry" class="regular.lowerDeductCertificate.LowerDeductCertificateBrowse" method="execute">
+            <result name="entry" type="tiles">tdsLowerDeductionEntry</result>            
+        </action>
+        <action name="tdsDeductionManupulation" class="regular.lowerDeductCertificate.LowerDeductionCRUD" method="execute">
+            <result name="input_return" type="tiles">tdsLowerDeductionEntry</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">tdsLowerDeductionBrowse</param>
+            </result>
+            <result name="input_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="getTdsSplRateMasterAjaxAction" class="regular.lowerDeductCertificate.LowerDeductionAjaxAction" method="execute">
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        
+    </package>
+</struts>
+

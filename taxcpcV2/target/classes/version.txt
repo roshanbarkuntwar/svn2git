@@ -1,0 +1,2 @@
+version=1.0-SNAPSHOT
+build.date=10-11-2022 03:53 PM

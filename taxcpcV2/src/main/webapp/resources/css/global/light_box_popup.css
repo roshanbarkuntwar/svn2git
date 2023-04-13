@@ -1,0 +1,58 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Aug 18, 2014, 5:57:47 PM
+    Author     : akash.dev
+*/
+
+/**********************light_box**************/
+
+.light_box_content{
+    display: none;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    width: 0px;
+    bottom: 0px;
+    z-index:910011;
+    overflow:visible;    
+}
+
+#light_box_page_src{
+    position: relative;
+    border: none;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    display: none;
+    min-height: 400px;
+}
+
+
+#lov_loading{
+    position: absolute;
+    display: block;
+    height: 60px;
+    width: 60px;
+    top: 275px;
+    right: 788px;
+}
+
+.light_box_overlay{
+    display: none;
+    position: fixed;
+    top: 0px;    
+    right: 0px;
+    bottom: 0px;
+    background-color: #000;
+    z-index:910010;
+    -moz-opacity: 0.7;
+    opacity:.70;
+    filter: alpha(opacity=70);
+}
+
+
+/**********************light_box*************/

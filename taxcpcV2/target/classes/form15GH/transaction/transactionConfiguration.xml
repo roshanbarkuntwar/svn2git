@@ -1,0 +1,162 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+
+<!-- Author: aniket.naik -->
+
+<struts>
+    <!-- Add your configuration elements here -->
+    <package name="form15GH.transaction" extends="struts-default" namespace="/">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
+        
+        <interceptors>
+            <interceptor class="interceptors.LoginInterceptor" name="LoginInterceptor" ></interceptor>
+            
+            <interceptor-stack name="loginStack">
+                <interceptor-ref name="LoginInterceptor" />
+                <!--<interceptor-ref name="DeducteeIncomeDetailsInterceptor" />-->
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+            
+            <interceptor class="interceptors.ModuleAccessInterceptor" name="moduleAccessInterceptor"   ></interceptor>
+            <interceptor-stack name="moduleAccessStack">
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="moduleAccessInterceptor" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        
+        <default-interceptor-ref name="loginStack"/>
+        
+        <global-results>
+            <result name="loginFailed" type="redirect">login</result>
+            <result name="login">/login.jsp</result>
+            <result name="setassessment" type="redirect">setassessment</result>
+            <result name="globalError" type="redirect">globalError</result>
+            <result name="accessDenied" type="tiles">globalAccessDenied</result>
+            <result name="customError" type="tiles">customError</result>
+        </global-results>
+        
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="globalError" />
+        </global-exception-mappings> 
+        
+        
+        
+        <action name="form15GHTransaction" class="form15GH.transaction.TransactionBrowseAction" method="execute">
+            <result name="error" type="tiles">customError</result>
+            <result name="success" type="tiles">15GHTransaction</result>            
+        </action>
+        
+        <action name="deductees15gh" class="form15GH.transaction.TransactionBrowseAction" method="execute">
+            <result name="success" type="tiles">15GHTransaction</result>
+            <result name="filter_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+          
+        <action name="deductees15ghDataAction" class="form15GH.transaction.DeducteesDataGrid15GH" method="execute">
+            <result name="grid_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        
+        <action name="deducteesAction15gh" class="form15GH.transaction.DeducteesAction15GH" method="execute">
+            <result name="input" type="redirectAction">
+                <param name="actionName">form15GHTransaction</param> 
+            </result>
+            <result name="edit" type="tiles">deductees_edit15gh</result>
+            <result name="view" type="tiles">deductees_edit15gh</result>
+            <result name="add" type="tiles">deductees_edit15gh</result> 
+             
+               
+            <result name="deductee_type" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        
+        <action name="getCityAndStateByPinCode" class="form15GH.transaction.GetCityAndStateByPinCode" method="execute">
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action> 
+        
+        <action name="getDeducteeCRUDEAction15gh" class="form15GH.transaction.DeducteeCRUDAction15GH" method="execute">
+            <result name="input" type="redirectAction">
+                <param name="actionName">deducteesAction15gh</param>
+                <param name="action">${action}</param>
+            </result>
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="dropdownListDataAction15gh" class="form15GH.transaction.SelectAJAXDataAction15GH" method="execute"> 
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="getGenReferenceNoAction" class="form15GH.transaction.GenerateReferenceNoAction" method="execute">
+            <result name="refnoPage" type="tiles">refranceNo15gh</result>
+            <result name="inputString" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>  
+        <action name="getDownloadRefNoTemp" class="form15GH.transaction.DownloadReferenceNoDetailTemplate" method="execute">
+            <result name="input" type="redirectAction">
+                <param name="actionName">getGenReferenceNoAction</param>
+                <param name="action">RefNoPage</param>  
+            </result>
+            <result name="downloadtempsuccess" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">4096</param>
+            </result>        
+            <result name="singledownloadtemp" type="stream">
+                <param name="downlloadtype">${obj_exl_html.downloadType}</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+            </result>
+        </action>
+
+        <action name="getListDataAction" class="form15GH.transaction.SelectListAction" method="execute">
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action> 
+        
+        <action name="uploadXlsFileReferenceNo" class="form15GH.transaction.UploadAttachmentReferenceNo"  method="execute">
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+            <result name="uploadMaxResult" type="redirectAction">
+                <param name="actionName">logout</param>
+                <param name="mx_upd_res">${mx_upd_res}</param>
+            </result>   
+        </action>
+        
+        <action name="referenceNoUpload" class="form15GH.transaction.RefNoUpdation15GH" method="execute">
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result> 
+            <result name="uploadMaxResult" type="redirectAction">
+                <param name="actionName">logout</param>
+                <param name="mx_upd_res">${mx_upd_res}</param>
+            </result>
+        </action>
+    </package>
+</struts>
+

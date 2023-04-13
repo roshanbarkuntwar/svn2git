@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA;;;;EAIE;AACF;;;EAGE;AAEF,YACA;EACC,SAAS,EAAE,GAAG",
+"sources": ["../../scss/processFolder/errorDetails.scss"],
+"names": [],
+"file": "errorDetails.css"
+}

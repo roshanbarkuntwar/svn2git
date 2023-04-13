@@ -1,0 +1,41 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 31, 2019, 2:50:40 PM
+    Author     : sneha.parpelli
+*/
+@import "../main/variable";
+@import "../main/mixins";
+.tab-section .nav-pills > li > a {
+
+    font-size: 18px;
+ 
+
+    @include respond-to(medium-laptop-screen)
+    {
+        font-size: 11px;
+        padding: 3px 5px 3px;
+    }
+}
+.tab-section .nav-pills > li > a.active:after {
+    border-bottom: 33px solid $blue;
+    @include respond-to(medium-laptop-screen)
+    {
+        border-bottom: 22px solid $blue;
+    }
+}
+.tab-section .nav-pills > li > a:after {
+    border-bottom: 33px solid #fff;
+    @include respond-to(medium-laptop-screen)
+    {
+        border-bottom: 22px solid #fff;
+    }
+}
+#addInfo{display:block;}
+.nav-pills #addInfo.active, .nav-pills .show > #addInfo {
+    background-color: #4E8DFF;
+    color:#fff;
+}

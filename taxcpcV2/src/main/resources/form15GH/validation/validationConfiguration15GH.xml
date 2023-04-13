@@ -1,0 +1,215 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+
+<!-- Author: ayushi.jain -->
+
+<struts>
+    <!-- Add your configuration elements here -->
+    <package name="form15GH.validation" extends="struts-default" namespace="/">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
+        
+        <interceptors>
+            <interceptor class="interceptors.LoginInterceptor" name="LoginInterceptor" ></interceptor>
+            
+            <interceptor-stack name="loginStack">
+                <interceptor-ref name="LoginInterceptor" />
+                <!--<interceptor-ref name="DeducteeIncomeDetailsInterceptor" />-->
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+            
+            <interceptor class="interceptors.ModuleAccessInterceptor" name="moduleAccessInterceptor"   ></interceptor>
+            <interceptor-stack name="moduleAccessStack">
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="moduleAccessInterceptor" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        
+        <default-interceptor-ref name="loginStack"/>
+        
+        <global-results>
+            <result name="loginFailed" type="redirect">login</result>
+            <result name="login">/login.jsp</result>
+            <result name="setassessment" type="redirect">setassessment</result>
+            <result name="globalError" type="redirect">globalError</result>
+            <result name="accessDenied" type="tiles">globalAccessDenied</result>
+            <result name="customError" type="tiles">customError</result>
+
+        </global-results>
+        
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="globalError" />
+        </global-exception-mappings>                 
+                
+        <action name="processErrors15GH" class="form15GH.validation.ValidationAction15GH" method="execute">
+            <result name="input" type="tiles">15GHValidate</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">ProcessErrorResultAction15GH</param> 
+                <param name="validate">${validate}</param>  
+                <param name="upload_purpose">${upload_purpose}</param>  
+                <param name="l_error_process_type">${l_error_process_type}</param>  
+                <param name="processCnfChkBx">${processCnfChkBx}</param>   
+                <param name="clientLoginLevel">${clientLoginLevel}</param>   
+                <param name="selectedValue">${selectedValue}</param>   
+                <param name="reprocessFlag">${reprocessFlag}</param>   
+                <param name="processLevel">${processLevel}</param>   
+                <param name="loginLevel">${loginLevel}</param>   
+                <param name="tokenNo">${tokenNo}</param>   
+                <param name="selectedUserLevel">${selectedUserLevel}</param>   
+            </result>            
+        </action>
+        
+        <action name="ProcessErrorResultAction15GH" class="form15GH.validation.ProcessErrorResult15GH" method="execute">
+            <result name="input" type="tiles">15GHValidate</result>
+            <result name="success" type="tiles">ProcessErrorsResult15GH</result>
+            <result name="ajax_result">WEB-INF/view/jsp/form15GH/validation/processErrorSummaryRefresh15GH.jsp</result>
+        </action>
+        
+        <action name="refreshErrorProcessTokenStatus15GH" class="form15GH.validation.ProcessError15GHSupport" method="execute">
+            <result name="input" type="tiles">errorStatus15GH</result>
+            <result name="token_refreshed" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        
+        <action name="getPANDetailsAction15GH" class="form15GH.validation.PanDetailAction15GH" method="execute">         
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+        
+        <action name="dynamicFileDashboardAction15GH" class="form15GH.validation.DynamicFileDashboard15GH" method="execute">
+            <result name="success">WEB-INF/view/jsp/form15GH/validation/DynamicFileDashboard15GH.jsp</result>
+        </action>
+        
+        <action name="getDynamicFileUplodErr15GH" class="form15GH.validation.ProcessErrorDetailAction15GH" method="execute">          
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+        
+        <action name="errorManipulationAction15GH" class="form15GH.validation.ErrorManipulationAction15GH"  method="execute">
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+        
+        <action name="deducteeErrorDetailAction15GH" class="form15GH.validation.DeducteeErrorDetailAction15GH" method="execute">         
+            <result name="success" type="tiles">15GHErrorDetails</result>
+            <result name="input_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+        
+        <action name="getErrorManipulationAction15GH" class="form15GH.DeducteeManage15ghDetail.GenerateXML15GH.DynamicErrorManipulationAction15GH1"  method="execute">
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+        
+        <action name="generateXml15GHAction" class="form15GH.DeducteeManage15ghDetail.GenerateXML15GH.Generate15GHXMLAction" method="execute">
+            <result name="success" type="tiles">generateXml15gh</result>  
+            <result name="error" type="tiles">customError</result>           
+        </action>
+        
+        <action name="downloadbulk15GHXml15gh" class="form15GH.DeducteeManage15ghDetail.GenerateXML15GH.Generate15GHXmlDetailDownload" method="execute"> 
+            <result name="success" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileNameToDownload}"</param>
+                <param name="bufferSize">4096</param>
+            </result>
+            <result name="samePage" type="redirectAction">
+                <param name="actionName">generateXml15GHAction?ab=c</param>                
+                <param name="message">${message}</param>
+                <param name="generatedFileName">${fname}</param>
+                <param name="generatedFileLink">${filePath}</param>
+                <param name="fileTypeFound">${fileTypeFound}</param>
+                <param name="cgl">${cgl}</param>
+            </result>         
+        </action>
+        
+        <!--        <action name="generateXmlModal15gh" class="form15GH.DeducteeManage15ghDetail.GenerateXML15GH.Generate15GHXmlModalAction" method="execute">
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>-->
+        
+        <!--        <action name="downloadBranchesRecordActionXML15gh" class="form15GH.DeducteeManage15ghDetail.GenerateXML15GH.Generate15GHlXmlClientDetailDownload"  method="execute">
+            <result name="input" type="redirect">generateXml15GHAction</result>
+            <result name="downloadsuccess" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">4096</param>
+            </result>
+        </action>-->
+         
+     
+        <action name="deducteeErrorDetailDataAction" class="form15GH.validation.DeducteeErrorDetailDataGridAction" method="execute">       
+            <result name="input_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+        
+        <action name="downloadExcelFileErrorTemplate15GH" class="form15GH.validation.DownloadErrorDetailsAction15GH"  method="execute">
+            <result name="downloadsuccess" type="stream">
+                <param name="downlloadtype">${obj_exl_html.downloadType}</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+            </result>
+            <result name="downloadfailed" type="redirectAction">
+                <param name="actionName">15GHValidate</param>
+            </result>
+        </action>
+        
+        <action name="excelDownloadDeductee15GHErrorDetails" class="form15GH.validation.DownloadDeductee15GHErrorDetails"  method="execute">
+            <result name="downloadsuccess" type="stream">
+                <param name="downlloadtype">${obj_exl_html.downloadType}</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+            </result>
+        </action>
+        
+        <action name="get15GhOtherAjaxData" class="form15GH.validation.Form15GHOtherAjaxAction" method="execute">
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+           
+        <action name="errorStatus15GH" class="form15GH.validation.ErrorStatusAction15GH"  method="execute">
+            <result name="success" type="tiles">errorStatus15GH</result>
+        </action>   
+        
+        <action name="generateProcessErrorToken15GH" class="form15GH.validation.ProcessError15GHSupport"  method="execute">
+            <result name="token_result" type="stream">                
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>            
+            </result>
+        </action>   
+        
+        <action name="download15GHXmlZip" class="form15GH.validation.ProcessError15GHSupport" method="execute">            
+            <result name="success" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileNameToDownload}"</param>
+                <param name="bufferSize">4096</param>
+            </result>
+            <result name="input" type="redirect">errorStatus15GH</result>          
+        </action>
+    </package>
+</struts>
+

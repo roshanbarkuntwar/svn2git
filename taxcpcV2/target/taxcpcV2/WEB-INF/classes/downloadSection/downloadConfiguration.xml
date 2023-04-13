@@ -1,0 +1,134 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+
+<!-- Author: ayushi.jain -->
+
+<struts>
+    <!-- Add your configuration elements here -->
+    <package name="downloadSection" extends="struts-default" namespace="/">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
+        
+        <interceptors>
+            <interceptor class="interceptors.LoginInterceptor" name="LoginInterceptor" ></interceptor>
+            
+            <interceptor-stack name="loginStack">
+                <interceptor-ref name="LoginInterceptor" />
+                <!--<interceptor-ref name="DeducteeIncomeDetailsInterceptor" />-->
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+            
+            <interceptor class="interceptors.ModuleAccessInterceptor" name="moduleAccessInterceptor"   ></interceptor>
+            <interceptor-stack name="moduleAccessStack">
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="moduleAccessInterceptor" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        
+        <default-interceptor-ref name="loginStack"/>
+        
+        <global-results>
+            <result name="loginFailed" type="redirect">login</result>
+            <result name="login">/login.jsp</result>
+            <result name="setassessment" type="redirect">setassessment</result>
+            <result name="globalError" type="redirect">globalError</result>
+            <result name="accessDenied" type="tiles">globalAccessDenied</result>
+            <result name="customError" type="tiles">customError</result>
+        </global-results>
+        
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="globalError" />
+        </global-exception-mappings> 
+        
+     
+        
+        <action name="downloadInTemplate" class="downloadSection.DownloadInTemplateAction"  method="execute">
+            <result name="input" type="tiles">customError</result>
+            <result name="downloadsuccess" type="stream">
+                <param name="downlloadtype">${obj_exl_html.downloadType}</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+            </result>
+        </action>
+        
+        <action name="downloadUsingPath" class="downloadSection.DownloadUsingPath"  method="execute">
+            <result name="download" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileNameToDownload}"</param>
+                <param name="bufferSize">1024</param>
+            </result>
+            <result name="samePage" type="tiles">customError</result>
+        </action>
+         
+        <action name="downloadStatusBrowse" class="downloadSection.DownloadStatusBrowseAction" method="execute">
+            <result name="success" type="tiles">downloadStatus</result>
+            <result name="ajax_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>            
+        </action>   
+        
+        <action name="downloadStatusGrid" class="downloadSection.DownloadStatusGridAction" method="execute">  
+            <result name="input" type="tiles">dashboard</result>
+            <result name="status_grid" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+            <result name="input_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>    
+         
+        <action name="bulkDownloadAction" class="regular.downloadBulk.DownloadBulkAction" method="execute">
+            <result name="input" type="redirect">downloadStatusBrowse</result>
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result> 
+              
+            <result name="bulkExcel" type="stream">
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+            </result>                     
+        </action>
+           
+        <action name="allBulkDownloadAction" class="regular.downloadBulk.DownloadAllBulkAction" method="execute">
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>            
+        </action>
+        <action name="downloadUsingPathAndDrive" class="downloadSection.DownloadUsingPathAndDrive"  method="execute">
+            <result name="download" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileNameToDownload}"</param>
+                <param name="bufferSize">1024</param>
+            </result>
+            <result name="samePage" type="tiles">customError</result>
+        </action>
+        
+        
+          
+<!--        <action name="DownloadFileServlet" class="dao.generic.getAndDownloadBlobFile" method="doGett">
+            <result  type="stream">
+              <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result> 
+            
+            <result type="stream">
+              File buffer size  
+            <param name="bufferSize">2048</param>
+          </result>
+       </action>
+        -->
+        
+    </package>
+</struts>
+

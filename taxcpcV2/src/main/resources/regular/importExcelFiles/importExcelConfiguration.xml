@@ -1,0 +1,148 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+
+<!-- Author: ayushi.jain -->
+
+<struts>
+    <!-- Add your configuration elements here -->
+    <package name="importExcelFiles" extends="struts-default" namespace="/">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
+        
+        <interceptors>
+            <interceptor class="interceptors.LoginInterceptor" name="LoginInterceptor" ></interceptor>
+            
+            <interceptor-stack name="loginStack">
+                <interceptor-ref name="LoginInterceptor" />
+                <!--<interceptor-ref name="DeducteeIncomeDetailsInterceptor" />-->
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+            
+            <interceptor class="interceptors.ModuleAccessInterceptor" name="moduleAccessInterceptor"   ></interceptor>
+            <interceptor-stack name="moduleAccessStack">
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="moduleAccessInterceptor" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        
+        <default-interceptor-ref name="loginStack"/>
+        
+        <global-results>
+            <result name="loginFailed" type="redirect">login</result>
+            <result name="login">/login.jsp</result>
+            <result name="setassessment" type="redirect">setassessment</result>
+            <result name="globalError" type="redirect">globalError</result>
+            <result name="accessDenied" type="tiles">globalAccessDenied</result>
+        </global-results>
+        
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="globalError" />
+        </global-exception-mappings> 
+        
+        <action name="tdsImportAction" class="regular.importExcelFiles.ImportExcelAction" method="execute">
+            <result name="input" type="tiles">excelImport</result>
+            <result name="success" type="redirect">tdsImportStatus</result>
+            <result name="uploadfileresult" type="redirectAction">
+                <param name="actionName">importMasterUploadResultAction</param>
+                <param name="importSeqNo">${importSeqNo}</param>
+            
+            </result>
+            <result name="uploadMaxResult" type="redirectAction">
+                <param name="actionName">logout</param>
+                <param name="mxUpdRes">${mxUpdRes}</param>
+            </result>
+            <result name="errorfileresult" type="redirect">tdsImportAction</result>      
+        </action>
+        <action name="tdsImportStatus" class="regular.importExcelFiles.ImportSatusAction" method="execute">
+            <result name="success" type="tiles">excelImportStatus</result>
+               
+        </action>
+        <!-- Add for token status-->
+        <action name="getTokenStatus" class="regular.importExcelFiles.TokenSatusAction" method="execute">
+            <result name="success" type="tiles">tokenStatus</result>  
+            <result name="ajax_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>  
+        </action>
+        <action name="tokenStatusGrid" class="regular.importExcelFiles.TokenStatusGridAction" method="execute">  
+            <result name="input" type="tiles">dashboard</result>
+            <result name="status_grid" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+            <result name="input_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>    
+        <action name="importMasterUploadResultAction" class="regular.importExcelFiles.FileUploadResult" method="execute">
+            <result name="success" type="tiles">processFileResult</result>
+        </action>
+        <action name="getTemplateForDownloadAction" class="regular.importExcelFiles.GetTemplateForDownloadAction" method="execute">
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="getProcessErrorDataAction" class="regular.importExcelFiles.processErrorDataAJAX" method="execute">
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        
+        <action name="getDataValueAction" class="regular.importExcelFiles.ImportProcessOtherAjaxAction" method="execute">
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="filterFileUploadResult" class="regular.importExcelFiles.FilterFileUploadResult" method="execute">
+            <result name="success" type="tiles">ImportMasterUploadResult</result>
+            <result name="filter_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>         
+        </action>
+        <action name="getImportDetailAction" class="regular.importExcelFiles.ShowImportExcelDeatilAction" method="execute">
+            <!--<result name="success">/WEB-INF/view/jsp/ImportMasterExcelFiles/showImportResultGrid.jsp</result>-->
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        
+               
+        <action name="getImportDataManupulationAction" class="regular.importExcelFiles.LhssysTemplateManupulationAction" method="execute">
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        
+        <action name="getSaveDataAsProcedureAction" class="regular.importExcelFiles.SaveDataAsProcedureAction" method="execute">
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        
+       
+        
+        <action name="DownloadImportedExcelDetailAction" class="regular.importExcelFiles.DownloadImportExcelFileAction"  method="execute">
+            <result name="input" type="redirect">importMasterUploadResultAction</result>
+            <result name="downloadsuccess" type="stream">
+                <param name="downlloadtype">${obj_exl_html.downloadType}</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+            </result>
+        </action>
+            
+    </package>
+</struts>
+

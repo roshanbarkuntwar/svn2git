@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <listener>
+        <listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
+    </listener>
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    
+<!--    <listener>
+        <listener-class>com.lighthouseindiangp.taxcpc.CustomHttpSessionListener</listener-class>
+    </listener>-->
+    <session-config>
+        <session-timeout>45</session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <!--<welcome-file>/login.jsp</welcome-file>-->
+        <welcome-file>/index.jsp</welcome-file>
+    </welcome-file-list>
+    <!--=============context parameters===============-->
+    <context-param>
+        <param-name>WebsiteLogoImageURL</param-name>
+        <param-value>resources/images/global/TAXCPC-logo.png</param-value>
+    </context-param>
+    <context-param>
+        <param-name>WebsiteLogoImageWhiteURL</param-name>
+        <param-value>resources/images/global/TAXCPC-logo-white.png</param-value>
+    </context-param>
+    <context-param>
+        <param-name>WebsiteLogoImageALT</param-name>
+        <param-value>Lighthouse logo</param-value>
+    </context-param>
+    <context-param>
+        <param-name>WebsiteLogoClickURL</param-name>
+        <param-value>http://www.taxcpc.com</param-value>
+    </context-param>
+    <context-param>
+        <param-name>WebsiteName</param-name>
+        <param-value>TaxCPC</param-value>
+    </context-param>
+    <context-param>
+        <param-name>WebsiteNameTagline</param-name>
+        <param-value>House of expert professionals</param-value>
+    </context-param>
+    <context-param>
+        <param-name>WebsiteFooterText</param-name>
+        <param-value>© 2015 Figment Lighthouse Solutions Pvt. Ltd.</param-value>
+    </context-param>
+    <context-param>
+        <param-name>BrowserPageTitleImageURL</param-name>
+        <param-value>resources/images/global/TAXCPC LOGO1.png</param-value>
+    </context-param>
+    <context-param>
+        <param-name>BrowserPageTitleText</param-name>
+        <param-value>TaxCPC</param-value>
+    </context-param>
+    <!--================context parameters====================-->
+    
+<!--    <servlet>
+        <description>This servlet sends file to client</description>
+        <display-name>DownloadFileServlet</display-name>
+        <servlet-name>DownloadFileServlet</servlet-name>
+        <servlet-class>dao.generic.getAndDownloadBlobFile</servlet-class>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>DownloadFileServlet</servlet-name>
+        <url-pattern>/DownloadFileServlet</url-pattern>
+    </servlet-mapping>  -->
+    
+
+
+    
+    
+<servlet>  
+<servlet-name>downloadDataDriectFromBlob</servlet-name>   
+<servlet-class>downloadDirectFromDatabase.DownloadDataDirectFromBlob</servlet-class>
+</servlet>  
+<servlet-mapping>  
+<servlet-name>downloadDataDriectFromBlob</servlet-name>  
+<url-pattern>/downloadDataDriectFromBlob</url-pattern>  
+</servlet-mapping>   
+    
+    
+    
+<servlet>  
+<servlet-name>downloadDataDriectFromClob</servlet-name>   
+<servlet-class>downloadDirectFromDatabase.DownloadDataDirectFromClob</servlet-class>  
+</servlet>  
+<servlet-mapping>  
+<servlet-name>downloadDataDriectFromClob</servlet-name>  
+<url-pattern>/downloadDataDriectFromClob</url-pattern>  
+</servlet-mapping>  
+   
+        
+
+<servlet>  
+<servlet-name>downloadDataFromBlobToFile</servlet-name>   
+<servlet-class>downloadDirectFromDatabase.DownloadDataFromBlobToFile</servlet-class>  
+</servlet>  
+<servlet-mapping>  
+<servlet-name>downloadDataFromBlobToFile</servlet-name>  
+<url-pattern>/downloadDataFromBlobToFile</url-pattern>  
+</servlet-mapping>   
+    
+    
+    
+<servlet>  
+<servlet-name>downloadDataFromClobToFile</servlet-name>   
+<servlet-class>downloadDirectFromDatabase.DownloadDataFromClobToFile</servlet-class>  
+</servlet>  
+<servlet-mapping>  
+<servlet-name>downloadDataFromClobToFile</servlet-name>  
+<url-pattern>/downloadDataFromClobToFile</url-pattern>  
+</servlet-mapping>                    
+
+</web-app>
+
+
+   

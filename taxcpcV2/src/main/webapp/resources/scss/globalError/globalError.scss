@@ -1,0 +1,99 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 31, 2019, 11:34:30 AM
+    Author     : neha.bisen
+*/
+
+@import "../main/variable";
+@import "../main/mixins";
+
+
+body {
+    background: linear-gradient(45deg, #fc9088 50%, #ffffff 50%);
+
+    @include respond-to(small-to-medium-screen)
+    {       
+        background: linear-gradient(121deg, #fc9088 50%, #ffffff 50%) !important;
+
+
+    }
+    .login-wrap
+    {
+        height:600px;
+        overflow:hidden;
+        @include respond-to(small-to-medium-screen)
+        {       
+          height:auto;
+        }
+
+        &:before
+            {
+
+            @extend %before-after;
+            width: 400px;
+            height: 400px;
+            background: rgba(252, 141, 136, 0.28);
+            right: -26%;
+            border-radius: 50%;
+            z-index: 0;
+            @include respond-to(small-to-medium-screen)
+            {       
+                background: transparent;
+
+
+            }
+        }
+
+        &:after
+            {
+
+            @extend %before-after;
+            width: 400px;
+            height: 400px;
+            background: rgba(252, 141, 136, 0.28);
+            right: -24%;
+            border-radius: 50%;
+            top: 61px;
+            z-index: 0;
+            @include respond-to(small-to-medium-screen)
+            {       
+                background: transparent;
+
+
+            }
+        }
+
+
+
+        .login-vector {
+            background: #fef6f5;
+        }
+        .login-form
+        {
+            form
+            {
+                z-index:5;
+                h2
+                {
+                    font-size:2rem;
+                    color: #fc8b89;
+                }
+
+                .customError-title
+                {
+                    font-size: 2rem;
+
+                }
+
+                .btn {
+                    background: linear-gradient(60deg, #FF788F, #F8B77C);
+                    box-shadow: 0px 7px 30px 0px rgb(252, 144, 136);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+
+<struts>
+    
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="false" />
+    <!--add for page reloading fast-->
+    <constant name="struts.freemarker.templatesCache" value="true"/> 
+    <constant name="struts.xslt.nocache" value="false"/> 
+    <constant name="struts.ognl.logMissingProperties" value="=false"/>
+    <constant name="struts.el.throwExceptionOnFailure" value="false"/>
+    <constant name="struts.ognl.enableExpressionCache" value="true"/>
+    <constant name="struts.serve.static" value="false"/> 
+    <!--add for page reloading fast-->
+    <constant name="struts.ui.theme" value="simple" />
+    <constant name="struts.custom.i18n.resources" value="global" />    
+    <constant name="struts.multipart.saveDir" value="temp"/>
+    <constant name="struts.action.extension" value=","/>
+    <constant name="struts.multipart.maxSize" value="1000000000" />
+    <constant name="struts.action.excludePattern" value="/downloadDataDriectFromBlob ,/downloadDataDriectFromClob,/downloadDataFromBlobToFile,/downloadDataFromClobToFile"/>
+
+   
+    <package name="default" extends="struts-default" namespace="/" >
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
+        
+        <interceptors>
+            <interceptor class="interceptors.LoginInterceptor" name="LoginInterceptor" ></interceptor>
+            <interceptor-stack name="loginStack">
+                <interceptor-ref name="LoginInterceptor" />
+                <interceptor-ref name="defaultStack" /> 
+            </interceptor-stack>
+            
+            <interceptor class="interceptors.ModuleAccessInterceptor" name="moduleAccessInterceptor"   ></interceptor>
+            <interceptor-stack name="moduleAccessStack">
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="moduleAccessInterceptor" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        
+        <global-results>
+            <result name="login">/login.jsp</result>
+            <result name="loginFailed" type="redirect">login</result>
+            <result name="setassessment" type="redirect">setassessment</result>
+            <result name="globalError" type="redirect">globalError</result>
+            <result name="accessDenied" type="redirect">globalAccessDenied</result>
+        </global-results>
+        
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="globalError" />
+        </global-exception-mappings>         
+                
+        <!--<Google Login configuration>-->
+        <action name="tokensignin" class="com.lhs.googleLogin.GoogleLoginAction" method="execute">
+            <result name="ajax_result" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        
+        <action name="googleSignup">
+            <result>/WEB-INF/view/jsp/signup/googleSignupPage.jsp</result>
+        </action>
+        <!--</Google Login configuration>-->
+
+        <action name="getBuildVersion" class="com.lhs.taxcpcv2.GetBuildVersion" method="execute">
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+                          
+        <action name="login" class="com.lhs.taxcpcv2.LoginValidator" method="execute">
+            <result name="input">/login.jsp</result>
+            <result name="success" type="redirect">setAssessment</result>          
+        </action>
+        
+        <action name="executeQuery" class="com.lhs.taxcpcv2.GetDBEntityMastData" method="execute" >
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result> 
+            <result name="failure" type="redirect">dashboard</result>          
+        </action>
+        
+        <action name="signup" class="com.lhs.taxcpcv2.SignupUser" method="execute">
+            <result name="input">/signup.jsp</result>
+            <result name="signedup" type="redirect">login</result>
+            <result name="ajax_result" type="stream">
+                <param name="contentType">text/plain</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        
+        <action name="globalAccessDenied">
+            <result type="tiles">accessDenied</result>
+        </action>   
+        
+        <action name="dwnldChromeSetup" class="com.lhs.taxcpcv2.DownloadChromeSetup"  method="execute">
+            <result name="input">/login.jsp</result>
+            <result name="success" type="stream">
+                <param name="downlloadtype">${obj_exl_html.downloadType}</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+            </result>
+        </action>
+        
+        <action name="setAssessment" class="com.lhs.taxcpcv2.SetAssessmentAction" method="execute">
+            <result name="input" >/login.jsp</result>
+            <result name="success" type="redirect">dashboard</result>
+            <result name="newlyRegisteredClient" type="redirect">deductors</result>
+            <result name="adminDashboard" type="redirectAction" >
+                <param name="actionName">adminDashboard</param> 
+            </result> 
+            <result name="ajaxSuccess" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action> 
+        
+        <action name="getGlobalAJAXExecuter" class="com.lhs.taxcpcv2.GlobalAjaxExecuter" method="execute">
+            <interceptor-ref name="loginStack" />           
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+
+        <action name="getDeductorList" class="com.lhs.taxcpcv2.BaseLayoutAjaxAction" method="execute" >
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>  
+        
+        <action name="logout" class="com.lhs.taxcpcv2.Logout" method="execute">
+            <interceptor-ref name="loginStack" />
+            <result name="success" type="redirectAction" >
+                <param name="actionName">login</param>
+                <param name="mx_upd_res">${mx_upd_res}</param>
+            </result>
+        </action>
+        
+        <action name="forgotPassword" class="com.lhs.taxcpcv2.ForgotPassword" method="execute">
+            <result name="input">/forgotPassword.jsp</result>
+            <result name="success" type="redirect">login</result>
+        </action>
+
+        <action name="demoAction" class="com.lhs.taxcpcv2.DemoUITest" method="execute">
+            <result name="temp2" type="tiles">demo</result>
+        </action> 
+       
+        <action name="globalError" class="com.lhs.taxcpcv2.GlobalErrorControlAction" method="execute">
+            <result name="success">/globalError.jsp</result>
+        </action>  
+        
+        <!--New Procedure Calling Action-->
+        <action name="executeCommonProcedureCallback" class="dao.globalDBObjects.CommonProcedureExecutionAction" method="execute">
+        </action> 
+        
+        <action name="feedback" class="com.lhs.taxcpcv2.FeedBackAction" method="execute">
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <!-- Salary Sevaarth Start-->
+        <!--Temporary added xml for salary Sevaarth & Sevaarth Projection -->
+        <action name="salarySevaarth" class="regular.dashboard.salarySevaarth.SalarySevaarthBrowseAction" method="execute">
+            <result name="success" type="tiles">salarySevaarthBrowse</result>        
+            <result name="filter_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result> 
+        </action>   
+        
+        <action name="salarySevaarthDataGrid" class="regular.dashboard.salarySevaarth.SalarySevaarthDataGridAction" method="execute">
+            <result name="grid_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+            <result name="input" type="tiles">salarySevaarthBrowse</result>
+            <result name="input_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>      
+        </action>  
+        
+        <action name="salarySevaarthProjection" class="regular.dashboard.salarySevaarthProjection.SalarySevaarthProjectionBrowseAction" method="execute">
+            <result name="success" type="tiles">salarySevaarthProjectionBrowse</result>        
+            <result name="filter_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result> 
+        </action> 
+        
+        <action name="salarySevaarthProjectionDataGrid" class="regular.dashboard.salarySevaarthProjection.SalarySevaarthProjectionDataGridAction" method="execute">
+            <result name="grid_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+            <result name="input" type="tiles">salarySevaarthProjectionBrowse</result>
+            <result name="input_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>      
+        </action>
+        <!-- Salary Sevaarth Ends -->
+        <action name="changeLogo" class="com.lhs.taxcpcv2.ChangeLogoAction" method="execute">
+            <result name="success" type="tiles">changeLogo</result>   
+            <result name="filter_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>     
+        </action> 
+        <action name="getBranchHierarchy" class="regular.dashboard.branchHierarchy.BranchHierarchyAction" method="execute">
+            <result name="success" type="tiles">branchHierarchy</result>   
+            <result name="filter_success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>     
+        </action> 
+        
+        <action name="downloadCustomError">
+            <result name="success" type="tiles">downloadCustomError</result>    
+        </action>
+    </package>
+  
+    <include file="/dashboard/dashboardConfiguration.xml" /> 
+    <include file="/userProfile/userProfileConfiguration.xml" /> 
+    
+    
+    <!-- regular module configuration starts-->
+    <include file="/regular/deductee/deducteeConfiguration.xml" /> 
+    <include file="/regular/transaction/transactionConfiguration.xml" /> 
+    <include file="/regular/challan/challanConfiguration.xml" /> 
+    <include file="/regular/challan/challanVerification/VerifyChallanConfig.xml" /> 
+    <include file="/regular/challan/challanAllocation/challanAllocationConfiguration.xml" /> 
+    <include file="/regular/deductorInfo/deductorInfoConfiguration.xml" /> 
+    <include file="/regular/lowerDeductCertificate/lowerDeductionConfiguration.xml" /> 
+    <include file="/prnInfo/prnInfoConfiguration.xml" /> 
+    <include file="/regular/dashboard/ldcAllocation/ldcAllocationConfiguration.xml"/>
+    <include file="/regular/importExcelFiles/importExcelConfiguration.xml" /> 
+    <include file="/regular/salary/salaryConfiguration.xml" /> 
+    <include file="/regular/generateFVU/generateFVUConfiguration.xml" /> 
+    <include file="/downloadSection/downloadConfiguration.xml" /> 
+    <include file="/regular/dashboard/taxAudit/taxAuditConfiguration.xml" /> 
+    <include file="/regular/validateError/validateErrorConfiguration.xml" /> 
+    <include file="/regular/downloadTdsCertificate/downloadTdsCertificateConfiguration.xml" /> 
+    <include file="/regular/uploadCSI/uploadCSIConfiguration.xml" /> 
+    <include file="/regular/dashboard/branchGeneration/branchGenerationConfig.xml" /> 
+    <include file="/regular/dashboard/processDetails/processDetailsConfig.xml"  /> 
+    <include file="/regular/dashboard/miscTran/miscCinConfiguration.xml" />
+    <include file="/regular/dashboard/salarySevaarth/salarySevaarth.xml" />
+    <include file="/regular/dashboard/salarySevaarthProjection/salarySevaarthProjection.xml" />
+    <include file="/regular/dashboard/zipBulkFile/zipBulkFileConfiguration.xml" />
+    <!-- regular module configuration ends-->
+    
+    
+    <!-- 15GH configuration starts-->
+    <include file="/form15GH/deductorInfo/deductorInfoConfiguration.xml" /> 
+    <include file="/form15GH/transaction/transactionConfiguration.xml" /> 
+    <include file="/form15GH/generateRefNo/generateRefNoConfiguration.xml" /> 
+    <include file="/form15GH/validation/validationConfiguration15GH.xml" /> 
+    
+    
+    
+    <!-- Challan Correction -->
+    <!--Deductor Info Correction -->
+    
+    <!-- Correction Module configuration starts-->
+    <include file="/correction/importFile/corrImportConfiguration.xml" /> 
+        
+    <include file="/mis/misReportConfiguration.xml"/>
+    
+    
+    <include file="/adminDashboard/adminDashboard.xml" /> 
+</struts>

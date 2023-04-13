@@ -1,0 +1,40 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 31, 2019, 6:08:13 PM
+    Author     : neha.bisen
+*/
+body {
+  background: linear-gradient(45deg, #a6c6ff 50%, #ffffff 50%); }
+  @media only screen and (min-width: 240px) and (max-width: 737px) {
+    body {
+      background: linear-gradient(121deg, #a6c6ff 50%, #fff 50%) !important; } }
+  body .login-wrap {
+    height: 600px;
+    overflow: hidden; }
+    @media only screen and (min-width: 240px) and (max-width: 737px) {
+      body .login-wrap {
+        height: auto; } }
+    body .login-wrap:before {
+      background: rgba(166, 198, 255, 0.28); }
+      @media only screen and (min-width: 240px) and (max-width: 737px) {
+        body .login-wrap:before {
+          background: transparent; } }
+    body .login-wrap:after {
+      background: rgba(166, 198, 255, 0.28); }
+      @media only screen and (min-width: 240px) and (max-width: 737px) {
+        body .login-wrap:after {
+          background: transparent; } }
+    body .login-wrap .login-vector {
+      background: #f5f7fb !important; }
+    body .login-wrap h2 {
+      font-size: 2rem !important;
+      color: #82afff !important; }
+    body .login-wrap .btn {
+      background: linear-gradient(60deg, #2358b7, #689eff) !important;
+      box-shadow: 0px 7px 30px 0px rgba(56, 107, 196, 0.89) !important; }
+
+/*# sourceMappingURL=underConstruction.css.map */

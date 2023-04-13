@@ -1,0 +1,96 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 31, 2019, 12:59:48 PM
+    Author     : neha.bisen
+*/
+
+@import "../main/variable";
+@import "../main/mixins";
+
+
+html 
+{
+    height:calc(100% - 72px);   
+}
+
+body , .template-container , .right-section 
+{
+    height: 100%;
+}
+
+
+
+.custom-form
+{
+    height: 500px;
+    background: linear-gradient(258deg, #FF788F, #F8B77C);
+    width: 100%;
+    overflow:hidden;
+    border-radius: 26px;
+    @include respond-to(extra-large-screen)
+    {       
+
+        width: 90%;          
+    }
+    @include respond-to(extra-large-screen)
+    {       
+
+        width: 70%;          
+    }
+
+
+    &:before
+        {
+
+        @extend %before-after;
+        width: 400px;
+        height: 400px;
+        background: rgba(255, 255, 255, 0.14);
+        right: -55%;
+        border-radius: 50%;
+        z-index: 0;
+        top: 83px;
+    }
+
+    &:after
+        {
+
+        @extend %before-after;
+        width: 400px;
+        height: 400px;
+        background: rgba(255, 255, 255, 0.12);
+        right: -46%;
+        border-radius: 50%;
+        top: 25px;
+        z-index: 0;
+    }
+    i
+    {
+        font-size: 5rem;
+        background: white;
+        width: 120px;
+        height: 120px;
+        line-height: 120px;
+        color: #fe808d;
+        border-radius: 50%;
+        box-shadow: 2px 2px 20px rgba(255, 255, 255, 0.67059);
+        text-shadow: 6px -8px #ffdedc;
+    }
+
+
+}
+
+.access-denied{
+    background:linear-gradient(221deg, #4e8dff, #8db6ff);
+
+    i{
+
+        color: #679dff;
+        text-shadow: 7px 2px #dfebff;
+    }
+
+}
